@@ -1,0 +1,35 @@
+.partial-header{
+ background-color: black;
+ width: 100%;
+ margin-top: 0px;
+ margin-bottom: 30px;
+ padding: 15px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
+
+.header-logo{
+ color: white;
+ font-family: 'Sacramento',cursive;
+}
+
+.partial-footer{
+ background-color: black
+ width: 100%;
+ margin: auto;
+ padding: 15px;
+ color: white;
+ text-align: center;
+}
+
+.user-field{
+ margin: auto;
+ width: 200px;
+ padding-bottom: 15px;
+ position: relative;
+ border-top: solid 2px #BFC5CA;
+ border-bottom: solid 2px #BFC5CA;
+ border-left: solid 2px #BFC5CA;
+ Border-right: solid 2px #BFC5CA;
+ text-align: center;
+}
