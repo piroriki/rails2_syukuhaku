@@ -3,21 +3,22 @@
 <div class="user-field">
 <h4>ログイン</h4>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <th><%= f.label :email,"メールアドレス" %></th><br />
-    <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td><br />
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <div id="required">
+    <td><%= f.email_field :email, placeholder: "メールアドレス" %></td><br />
+    </div>
 
-    <th><%= f.label :password,"パスワード" %></th><br />
-    <td><%= f.password_field :password, autocomplete: "current-password" %></td><br />
+    <div id="required">
+    <td><%= f.password_field :password, placeholder:"パスワード" %></td><br />
+    </div>
 
   <% if devise_mapping.rememberable? %>
       <td><%= f.check_box :remember_me %></td>
       <th><%= f.label :remember_me,"パスワードを記憶する" %></th><br />
   <% end %>
 
-    <%= f.submit "ログインする" %>
+    <%= f.submit "ログイン" %>
 <% end %>
-<%= render "devise/shared/links" %>
 </div>
 
 <%= render partial: "devise/shared/partial-footer" %>

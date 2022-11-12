@@ -1,35 +1,38 @@
-<%= render "devise/shared/partial-header" %>
+<%= render partial: "devise/shared/partial-header" %>
 
-<h2>新規登録</h2>
+<div class="user-field">
+<h4>新しいアカウントを作成</h4>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-#ログイン画面内の各種入力フォームを設定する
-  <div class="field">
-    <th><%= f.label :email,"メールアドレス" %></th><br />
-    <td><%= f.email_field :Email, autofocus: true, autocomplete: "email" %></td>
-  </div>
+    <div id="required">
+<%binding.pry%>
+    <td><%= f.text_field :name, placeholder:"ユーザー名" %></td>
+    </div>
 
-  <div class="field">
-    <th><%= f.label :Password,"パスワード" %></th>
+    <div id="required">
+    <td><%= f.email_field :email, placeholder:"メールアドレス" %></td>
+    </div>
+
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <td><%= f.password_field :password, autocomplete: "new-password" %></td>
-  </div>
-
-  <div class="field">
-    <th><%= f.label :password_confirmation %></th><br />
-    <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
-  </div>
+    <div id="required">
+    <td><%= f.password_field :password, placeholder:"パスワード" %></td>
+    </div>
+   
+    <div id="required">
+    <td><%= f.password_field :password_confirmation, placeholder:"パスワード確認用" %></td>
+    </div>
 
   <div class="actions">
-    <%= f.submit "ユーザーを新規登録する" %>
+    <%= f.submit "新しいアカウントを作成" %>
   </div>
 <% end %>
 
 
 <%= render "devise/shared/links" %>
+</div>
 
-<%= render "devise/shared/partial-footer" %>
+<%= render partial: "devise/shared/partial-footer" %>
