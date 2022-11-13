@@ -3,21 +3,21 @@
 <div class="user-field">
 <h4>ログイン</h4>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |user| %>
     <div id="required">
-    <td><%= f.email_field :email, placeholder: "メールアドレス" %></td><br />
+    <td><%= user.email_field :email, placeholder: "メールアドレス" %></td><br />
     </div>
 
     <div id="required">
-    <td><%= f.password_field :password, placeholder:"パスワード" %></td><br />
+    <td><%= user.password_field :password, placeholder:"パスワード" %></td><br />
     </div>
 
   <% if devise_mapping.rememberable? %>
-      <td><%= f.check_box :remember_me %></td>
-      <th><%= f.label :remember_me,"パスワードを記憶する" %></th><br />
+      <td><%= user.check_box :remember_me %></td>
+      <th><%= user.label :remember_me,"パスワードを記憶する" %></th><br />
   <% end %>
 
-    <%= f.submit "ログイン" %>
+    <%= user.submit "ログイン" %>
 <% end %>
 </div>
 

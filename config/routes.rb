@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
 
-  resources :tops 
+  resources :tops, :reservations
+
+  resources :rooms do
+   member do
+    get 'post'
+   end
+  end
 
   devise_for :users
 

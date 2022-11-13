@@ -1,18 +1,17 @@
 <%= render partial: "devise/shared/partial-header" %>
 
-<div class="user-field">
+<div class="new-user-field">
 <h4>新しいアカウントを作成</h4>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
     <div id="required">
-<%binding.pry%>
-    <td><%= f.text_field :name, placeholder:"ユーザー名" %></td>
+    <td><%= f.text_field :name, autofocus: true, autocomplete:"name", placeholder:"ユーザー名" %></td>
     </div>
 
     <div id="required">
-    <td><%= f.email_field :email, placeholder:"メールアドレス" %></td>
+    <td><%= f.email_field :email, autofocus: true, autocomplete:"email", placeholder:"メールアドレス" %></td>
     </div>
 
     <% if @minimum_password_length %>

@@ -2,6 +2,16 @@ body, p{
  font-family: verdana, arial, helvetica, sans-serif;
 }
 
+table{
+ border-spacing: 30px;
+ border-collapse: collapse;
+ line-height: 100px;
+}
+
+th,td{
+ border-top: 2px solid #BFC5CA;
+}
+
 .partial-header{
  background-color: black;
  width: 100%;
@@ -26,20 +36,34 @@ body, p{
  text-align: center;
 }
 
-.user-field{
+.new-user-field{
  margin: auto;
  width: 700px;
  height: 300px;
  padding-bottom: 15px;
  position: relative;
- border-top: solid 2px #BFC5CA;
- border-bottom: solid 2px #BFC5CA;
- border-left: solid 2px #BFC5CA;
- Border-right: solid 2px #BFC5CA;
+ border: solid 2px #BFC5CA;
  text-align: center;
 }
 
 #required::before {
+  content: "必須";
+  background-color: #ED1A3D;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  min-width: 10px;
+  padding: 3px 7px;
+  margin: 0px 5px;
+  line-height: 1;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-align: center;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+th::after {
   content: "必須";
   background-color: #ED1A3D;
   color: white;
@@ -110,4 +134,19 @@ submit{
 
 .sign-in-message{
  color: white;
+}
+
+.new-room{
+ display: flex;
+}
+
+.new-room-form{
+ align-items: center;
+ padding: 10px 20px;
+ border: 2px solid #BFC5CA;
+ background-color :white;
+ width: 800px;
+ height: 650px;
+ margin: 50px 100px;
+ text-align: left;
 }
