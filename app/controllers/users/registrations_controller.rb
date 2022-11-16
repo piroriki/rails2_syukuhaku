@@ -2,8 +2,22 @@
 
 class Users::RegistrationsController < Devise::RegistrationsController
 
+def index
+end
+
+def show
+ @user = User.find(params[:id])
+end
+
 def create
- 
+ @user = User.new(params.require(:user).permit(:name,:email,:password))
+ if @user.save
+  redirect_to user_path(current_user.id)
+ else
+  flash[:notice]
+  flash[:alert]
+  render "new"
+ end
 end
 
 def new
@@ -11,6 +25,10 @@ def new
 end
 
 def edit
+end
+
+def after_sign_up_path_for(resource)
+ "/user/#{current_user.id}"
 end
 
   # before_action :configure_sign_up_params, only: [:create]
@@ -63,7 +81,7 @@ end
   # end
 
   # The path used after sign up.
-  # def after_sign_up_path_for(resource)
+
   #   super(resource)
   # end
 

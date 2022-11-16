@@ -1,7 +1,7 @@
 <%= render partial: "devise/shared/partial-header" %>
 
 <div class="new-user-field">
-<h4>新しいアカウントを作成</h4>
+<p class="sign_up_title">新しいアカウントを作成</p>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
