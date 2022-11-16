@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2022_11_13_155557) do
     t.string "name"
     t.text "introduction"
     t.integer "price"
-    t.string "address"
+    t.text "address"
     t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
