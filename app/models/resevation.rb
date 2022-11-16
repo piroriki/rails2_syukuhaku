@@ -1,0 +1,2 @@
+class Resevation < ApplicationRecord
+end

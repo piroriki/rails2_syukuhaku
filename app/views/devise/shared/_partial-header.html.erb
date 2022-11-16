@@ -10,13 +10,13 @@
   <!-- ユーザーがログインしていた場合、ログアウトの表示に変更する -->
    <p class="sign-out-message">現在<%= current_user.name %>さんがログインしています</p>
    <h4>メールアドレス: <%= current_user.email %></h4>
-   <%= link_to "ログアウト", destroy_user_session_path, method::delete %>
+   <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
 
   <% else %>
  
   <!--ユーザーがログインしていない場合、ログインもしくは新規登録ボタンを表示させる>
    <p class="sign-in-message">現在ログインしていません</p>
-   <%= button_to "ログイン", new_user_session_path,class: "post" %> <!-- ログインページに遷移する -->
+   <%= button_to "ログイン", new_user_session_path, class: "post" %> <!-- ログインページに遷移する -->
    <%= button_to "新規登録", new_user_registration_path, class: "post" %> <!-- 新規登録ページに遷移する -->
   <% end %>
  </div>

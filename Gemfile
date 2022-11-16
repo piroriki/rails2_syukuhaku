@@ -10,6 +10,8 @@ gem 'bcrypt'
 gem 'railties'
 gem 'responders'
 gem 'warden'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
 
 gem 'pry-byebug',group: :development
 
