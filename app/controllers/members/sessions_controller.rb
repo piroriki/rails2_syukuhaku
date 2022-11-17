@@ -1,28 +1,6 @@
 # frozen_string_literal: true
 
-class Users::SessionsController < Devise::SessionsController
-
-# def index
- # @user = User.all
- # @user = User.new
-# end
-
-# def show
- # @user = User.find(params[:id])
-# end
-
-# def create
- # User.create(user_params)
-# end
-
-# def new
- # @user = User.new
-# end
-
-# def edit
- # @user = User.find(params[:id])
-# end
-
+class Members::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in

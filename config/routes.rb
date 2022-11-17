@@ -1,13 +1,11 @@
 Rails.application.routes.draw do
 
-  devise_for :users, :controllers => {
-   :registrations => 'users/registrations',
-   :sessions => 'users/sessions'
+  devise_for :members, :controllers => {
+   :registrations => 'members/registrations',
+   :sessions => 'members/sessions'
   }
 
-  devise_scope :users do
-   get "users/sign_up"  => "users/registrations#new"
-   get "users/sign_in" => "users/sessions#new"
+  devise_scope :member do
   end
 
 

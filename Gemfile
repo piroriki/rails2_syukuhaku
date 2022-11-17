@@ -10,6 +10,7 @@ gem 'bcrypt'
 gem 'railties'
 gem 'responders'
 gem 'warden'
+gem 'net-smtp'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 

@@ -2,6 +2,8 @@ body, p{
  font-family: verdana, arial, helvetica, sans-serif;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
+
 table{
  border-spacing: 30px;
  border-collapse: collapse;
@@ -15,28 +17,61 @@ th,td{
 .partial-header{
  background-color: black;
  width: 100%;
+ height: 100px;
  margin-top: 0px;
  margin-bottom: 30px;
- padding: 15px;
+ padding: 5px;
+ display: flex;
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
 
 .header-logo{
  color: white;
+ font-size: 16px;
  font-family: 'Sacramento',cursive;
+}
+
+.header-button{
+ text-align: right;
+ align-items: right;
 }
 
 .partial-footer{
  background-color: black;
  width: 100%;
+ height: 150px;
  margin-top: 0px;
  padding: 15px;
  color: white;
  text-align: center;
+ vertical-align: center;
 }
 
-.new-user-field{
+.sign_up_title{
+ font-weight: bold;
+}
+
+.sign_in_title{
+ font-weight: bold;
+}
+
+.success_messages{
+ font-weight: bold;
+ background-color: #D3E173;
+ padding: 1em 1em;
+ margin: 1em 20em;
+ border: dashed 2px #5b8bd0;
+}
+}
+
+.alert_messages{
+ font-weight: bold;
+ background-color: #F37053;
+ padding: 1em 1em;
+ margin: 1em 20em;
+ border: dashed 2px #F15B5B;
+}
+
+.new-member-field{
  margin: auto;
  width: 700px;
  height: 300px;

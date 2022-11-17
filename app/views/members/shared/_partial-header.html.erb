@@ -1,0 +1,22 @@
+<div class = "partial-header">
+
+ <div class = "header-logo">
+  <h1><%= link_to "Pote Share",tops_path %></h1>
+ </div>
+ 
+ <div class="header-button">
+  <% if member_signed_in? %> <!-- ユーザーがログインしているかで処理を変える -->
+
+  <!-- ユーザーがログインしていた場合、ログアウトの表示に変更する -->
+   <%= button_to 'プロフィール変更', edit_member_registration_path  %>
+   <%= button_to 'ログアウト', destroy_member_session_path, method: :delete %>
+  <% else %>
+ 
+  <!--ユーザーがログインしていない場合、ログインもしくは新規登録ボタンを表示させる -->
+   <%= button_to '新規登録', new_member_registration_path %>
+   <%= button_to 'ログイン', new_member_session_path %>
+  <% end %>
+ </div>
+
+</div>
+

@@ -1,0 +1,32 @@
+<%= render "members/shared/partial-header" %>
+
+<p class="sign_up_title">新しいアカウントを作成</p>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "members/shared/error_messages", resource: resource %>
+
+<!-- 新規登録画面の入力内容を実装する -->
+<div class="new_member_field">
+ 　 <div id="required">
+    <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder:"ユーザー名" %><br />
+    </div>
+    
+    <div id="required">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"メールアドレス" %><br />
+    </div>
+
+    <div id="required">
+    <%= f.password_field :password, autocomplete: "new-password", placeholder:"パスワード" %><br />
+    </div>
+
+    <div id="required">
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"パスワード(確認用)" %><br />
+    </div>
+
+    <div class="actions">
+    <%= f.submit "新規登録" %>
+    </div>
+    <% end %>
+</div>
+
+<%= render "members/shared/partial-footer" %>
