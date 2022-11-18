@@ -1,43 +1,33 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<%= render "members/shared/partial-header" %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+<div class="user-edit-form">
+<p class="user-edit-title">アカウント編集</p>
+
+<%= form_with model :@member,url :registration_path(resource_name),local :true,html: { method: :put }) do |f| %>
   <%= render "members/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<!--　アカウント編集画面を設定する　-->
+    <%= f.label :メールアドレス %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %><br />
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
+    <%= f.label :変更後パスワード（変更する場合のみ入力） %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %><br />
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <%= f.label :パスワード確認用（変更する場合のみ入力） %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %><br />
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.label :現在のパスワード %><br />
     <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
 
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "更新" %><br />
+    <%= link_to "戻る", :back %>
   </div>
 <% end %>
+</div>
 
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+<%= render "members/shared/partial-footer" %>

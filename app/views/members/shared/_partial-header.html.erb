@@ -4,12 +4,32 @@
   <h1><%= link_to "Pote Share",tops_path %></h1>
  </div>
  
- <div class="header-button">
+ <div class="header-nav">
   <% if member_signed_in? %> <!-- ユーザーがログインしているかで処理を変える -->
 
-  <!-- ユーザーがログインしていた場合、ログアウトの表示に変更する -->
-   <%= button_to 'プロフィール変更', edit_member_registration_path  %>
-   <%= button_to 'ログアウト', destroy_member_session_path, method: :delete %>
+  <!-- ユーザーがログインしていた場合、ユーザー名とアイコン画像の表示に変更する -->
+    <p class="current-member-name"><%= current_member.name  %></p>
+    <%= link_to image_tag("default-icon.jpg", class: "default-icon") %>
+    
+<!-- ヘッダー右側にメニュー画面を表示させる -->
+    <ul class="header-nav-menu" style="display: block;">
+     <li class="nav-menu">
+      <%= link_to"ルーム登録",new_room_path %>
+     </li>
+     <li class="nav-menu">
+      <%= link_to"予約済みルーム一覧" %>
+     </li>
+     <li class="nav-menu">
+      <%= link_to"登録済みルーム一覧", rooms_path %>
+     </li>
+     <li class="nav-menu">
+      <%= link_to"設定" %>
+     </li>
+     <li class="nav-menu">
+      <%= link_to"ログアウト", destroy_member_session_path, method: :destroy %>
+     </li>
+    </ul>
+
   <% else %>
  
   <!--ユーザーがログインしていない場合、ログインもしくは新規登録ボタンを表示させる -->

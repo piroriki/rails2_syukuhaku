@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   }
 
   devise_scope :member do
+   post '/members/sign_out' => 'members/sessions#destroy'
+   get '/members/confirm' => 'members/registrations#confirm'
   end
 
 

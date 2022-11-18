@@ -1,42 +1,36 @@
-<%= render partial: "devise/shared/partial-header" %>
+<%= render partial: "members/shared/partial-header" %>
 
-<div class="new-room">
+<div class="show-rooms">
 
- <div class="new-room-form">
- <p class="room-settings-title">ルーム情報登録</p>
-
- <%= form_with model:@room do |room|%> <!-- ルーム登録画面で各種情報を設定させる -->
-  <table>
+<!-- 登録済みルームの情報を表示させる -->
   
-   <tr>
-    <th><%= room.label :name,"ルーム名" %></th>
-    <td><%= room.text_field :name, :placeholder => "ルーム名を入力" %></td>
-   </tr>
+<table>
+ <tr>
+  <th>ルーム名</th>
+  <td><%= @room.name %></td>
+ </tr>
 
-   <tr>
-    <th><%= room.label :introduction,"ルーム紹介" %></th>
-    <td><%= room.text_area :introduction, :placeholder => "ルーム説明を入力" %></td>
-   </tr>
+ <tr>
+  <th>ルーム紹介</th>
+  <td><%= @room.introduction %></td>
+ </tr>
 
-   <tr>
-    <th><%= room.label :price,"料金" %></th>
-    <td><%= room.number_field :price, :placeholder => "1日あたりの料金を入力" %></td>
-   </tr>
+ <tr>
+  <th>料金</th>
+  <td><%= @room.price %></td>
+ </tr>
 
-   <tr>
-    <th><%= room.label :address,"住所" %></th>
-    <td><%= room.text_area :address, :placeholder => "住所を入力" %></td>
-   </tr>
+ <tr>
+  <th>住所</th>
+  <td><%= @room.address %></td>
+ </tr>
 
-   <tr>
-    <th><%= room.label :image,"ルーム画像" %></th>
-    <td><%= room.file_field :image %></td>
-   </tr>
-  </table>
+ <tr>
+  <th>ルーム画像</th>
+  <td><%= image_tag @room.image.url, class:"show-images" %></td>  <!--　roomインスタンスの画像URLを使用して表示させる　-->
+ </tr>
 
-    <br><%= room.submit"登録" %>
- <% end %>
- </div>
+</table>
 </div>
 
-<%= render partial: "devise/shared/partial-footer" %>
+<%= render partial: "members/shared/partial-footer" %>

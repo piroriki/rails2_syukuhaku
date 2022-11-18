@@ -1,12 +1,12 @@
-<%= render partial: "devise/shared/partial-header" %>
+<%= render partial: "members/shared/partial-header" %>
 
 <div class="new-room">
 
  <div class="new-room-form">
- <p class="room-settings-title">ルーム情報登録</p>
+ <p class="new-room-title">ルーム情報登録</p>
 
  <%= form_with model:@room do |room|%> <!-- ルーム登録画面で各種情報を設定させる -->
-  <table>
+  <table class="new-room">
   
    <tr>
     <th><%= room.label :name,"ルーム名" %></th>
@@ -35,10 +35,9 @@
   </table>
 
   <p><%= room.submit"登録" %></p>
-  <p><%= link_to"登録済みルーム一覧に戻る",post_room_path %></p>
-    
+
  <% end %>
  </div>
 </div>
 
-<%= render partial: "devise/shared/partial-footer" %>
+<%= render partial: "members/shared/partial-footer" %>

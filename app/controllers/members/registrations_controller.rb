@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 class Members::RegistrationsController < Devise::RegistrationsController
+
+# 新規追加
+def confirm
+ @member = Member.find(current_member.id)
+end
+
+
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 

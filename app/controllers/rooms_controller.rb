@@ -1,28 +1,30 @@
 class RoomsController < ApplicationController
+
 # user.idは現在ログイン中のユーザーのみで絞り、room.idはログイン中に使用されている関連idのみで絞り込む
 
  def index
-  @user = User.all
-  @user = User.find(current_user.id)
+  @members = Member.all
+  @member = Member.find(current_member.id)
   @rooms = Room.all
  end
 
  def new
-  @user = User.find(current_user.id)
+  @Member = Member.find(current_member.id)
   @room = Room.new
  end
  
  def create
   @room = Room.new(params.require(:room).permit(:id, :name, :introduction, :price, :image))
   if @room.save
-   redirect_to :rooms
+   flash[:notice] = "ルーム登録が完了しました"
+   redirect_to room_path(@room)  # ルーム確認画面に飛ばす
   else
    render "new"
   end
  end
 
  def show
-  @user = User.find(current_user.id)
+  @member = Member.find(current_member.id)
   @room = Room.find(params[:id])
  end
 
@@ -30,14 +32,15 @@ class RoomsController < ApplicationController
  end
 
  def update
+  @room = Room.find(params[:id])
  end
 
  def destroy
  end
 
  def posts
-  @user = User.all
-  @user = User.find(current_user.id)
+  @member = Member.all
+  @member = Member.find(current_member.id)
   @rooms = Room.all
  end
 

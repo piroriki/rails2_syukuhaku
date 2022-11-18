@@ -2,10 +2,11 @@
 
 <p class="sign_up_title">新しいアカウントを作成</p>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_with model: @member,url :registration_path(resource_name),local :true do |f| %>
   <%= render "members/shared/error_messages", resource: resource %>
 
 <!-- 新規登録画面の入力内容を実装する -->
+
 <div class="new_member_field">
  　 <div id="required">
     <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder:"ユーザー名" %><br />

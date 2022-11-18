@@ -2,7 +2,7 @@
 
 <p class="sign_in_title">ログイン</p>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<%= form_with model :@member, url :session_path(resource_name),local :true do |f| %>
 <div class="sign_in_field">
     <div id="requiered">
     <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス" %><br />

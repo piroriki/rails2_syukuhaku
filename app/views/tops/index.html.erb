@@ -1,11 +1,38 @@
 <%= render "members/shared/partial-header" %>
 <%= render "members/shared/partial-messages" %>
 <div class="top-main">
- 
+
+<!-- 背景画像の中に検索エリアを用意する -->
  <div class="search-area">
   <p class="search-area-title">Potepan Shareでまだ体験したことのない旅をしよう</p>
  </div>
-
 </div>
+
+<!--　各エリアの画像を貼り付け、画像リンク&地名を表示させる　-->
+ <div class="area-container">
+  
+  <p class="area-container-title">おすすめのエリア</p>
+  <div class="image-4area">
+   
+   <div class="image-area">
+    <p id="image-title">東京</p>
+    <%= link_to image_tag("img_tokyo.jpg", class:"image") %>
+   </div>
+   <div class="image-area">
+    <p id="image-title">大阪</p>
+    <%= link_to image_tag("img_osaka.jpg", class:"image") %>
+   </div>
+   <div class="image-area">
+    <p id="image-title">京都</p>
+    <%= link_to image_tag("img_kyoto.jpg", class:"image") %>
+   </div>
+   <div class="image-area">
+    <p id="image-title">札幌</p>
+    <%= link_to image_tag("img_sapporo.jpg", class:"image") %>
+   </div>
+
+  </div>
+ 
+  </div>
 
 <%= render "members/shared/partial-footer" %>

@@ -1,5 +1,30 @@
-<%= render partial: "devise/shared/partial-header" %>
+<%= render partial: "members/shared/partial-header" %>
+
+<p class="posts-index-title">登録済みルーム一覧</p>
+
+<table class="posts-index-form">
+ <thead>
+  <tr>
+   <th>ルーム画像</th>
+   <th>ルーム名</th>
+   <th>ルーム紹介</th>
+   <th>料金</th>
+   <th>作成日</th>
+  </tr>
+ </thead>
+
+ <tbody>
+  <% @rooms.each do |room| %>
+   <tr>
+    <td><%= image_tag room.image.url, class: "posts-image" %></td>
+    <td><%= link_to"#{room.name}", controller:'rooms', action:'show', id:room.id %></td>
+    <td><%= room.introduction %></td>
+    <td class="price-mark"><%= room.price %></td>
+    <td><%= room.created_at.to_s(:datetime_jp) %></td>
+   </tr>
+  <% end %>
+ </tbody>
+<table>
 
 
-
-<%= render partial: "devise/shared/partial-footer" %>
+<%= render partial: "members/shared/partial-footer" %>
