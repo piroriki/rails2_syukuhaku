@@ -1,6 +1,6 @@
 class TopsController < ApplicationController
 
- def index
+ def index 
  end
 
  def create

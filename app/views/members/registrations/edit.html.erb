@@ -3,7 +3,7 @@
 <div class="user-edit-form">
 <p class="user-edit-title">アカウント編集</p>
 
-<%= form_with model :@member,url :registration_path(resource_name),local :true,html: { method: :put }) do |f| %>
+<%= form_with model: @member, url: edit_member_registration_path, local: true do |f| %>
   <%= render "members/shared/error_messages", resource: resource %>
 
 <!--　アカウント編集画面を設定する　-->

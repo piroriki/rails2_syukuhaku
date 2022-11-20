@@ -410,19 +410,39 @@ table.new-room th::after{
 }
 
 /*ユーザーアカウント確認タイトル設定*/
-.user-confirm-title{
+.user-show-title{
  font-size: 20px;
  font-weight: bold;
+ border-bottom: 2px solid #BFC5CA;
+ padding: 20px 5px;
+ margin: 0;
+ font-size: 20px;
 }
 
 /*ユーザーアカウント確認フォーム設定*/
-.user-confirm-form{
+.user-show-form{
  align-items: center;
  padding: 10px 20px;
  border: 2px solid #BFC5CA;
  background-color :white;
  width: 600px;
- height: 300px;
+ height: 400px;
  text-align: left;
  margin: 50px auto;
+}
+
+/*ユーザーアカウント確認項目設定*/
+.show-form{
+ border-bottom: 2px solid #BFC5CA;
+ padding: 20px;
+}
+
+/*ユーザーアカウント確認部分ラベル設定*/
+#show-form-label{
+ margin-right: 5px;
+}
+
+/*ユーザーアカウント編集ボタン設定*/
+.actions{
+ margin-top: 20px;
 }

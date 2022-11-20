@@ -1,35 +1,63 @@
 # frozen_string_literal: true
 
 class Members::RegistrationsController < Devise::RegistrationsController
+ before_action :configure_account_update_params, only: [:update] # 新規追加
 
 # 新規追加
-def confirm
- @member = Member.find(current_member.id)
-end
+ def account
+  @member = current_member
+ end
+
+ # protected
+
+ # def update_resource(resource, params)
+ # resource.update_without_password(params)
+ # end
+
+ # def configure_account_update_params
+ # devise_parameter_sanitizer.permit(:account_update, keys: [:name])
+ # end
 
 
   # before_action :configure_sign_up_params, only: [:create]
-  # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   # def new
   #   super
   # end
 
-  # POST /resource
-  # def create
-  #   super
-  # end
+  # POST /resource #新規追加
+  def create
+   build_resource(sign_up_params)
+
+   resource.save
+   yield resource if block_given?
+   if resource.persisted?
+    if resource.active_for_authentication?
+      set_flash_message! :notice, :"signed_up"
+      sign_up(resource_name,resource)
+      respond_with resource,location: after_sign_up_path_for(resource)
+    else
+     set_flash_messsage! :notice, :"signed_up_but_#{resource.inactive_message}"
+     expire_data_after_sign_in!
+     respond_with resource, location: after_inactive_sign_up_path_for(resource)
+    end
+   else
+    clean_up_passwords resource
+    set_minimum_password_length
+    respond_with resource, status: :see_other # 登録失敗時のrespond_withにerror出したいので、ここで303 statusを追加
+   end    
+  end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    super
+  end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    super
+  end
 
   # DELETE /resource
   # def destroy

@@ -7,14 +7,16 @@ Rails.application.routes.draw do
 
   devise_scope :member do
    post '/members/sign_out' => 'members/sessions#destroy'
-   get '/members/confirm' => 'members/registrations#confirm'
+   get '/members/account' => 'members/registrations#account'
+   # patch '/members/account' => 'members/registrations#account'
   end
 
 
   resources :tops, :reservations
 
   resources :rooms do
-   member do
+   collection do
+    get 'search'
     get 'post'
    end
   end
