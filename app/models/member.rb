@@ -4,6 +4,8 @@ class Member < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+# mount_uploader :avatar, AvatarUploader
+
  def update_without_current_password(params, *options) # 新規追加
   params.delete(:current_password)
 
@@ -20,6 +22,7 @@ class Member < ApplicationRecord
  with_options presence: true do
   validates :name
   validates :email
+  validates :profile, length: {maximum: 200 }
  end
 
 end

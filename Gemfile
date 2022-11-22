@@ -13,8 +13,8 @@ gem 'warden'
 gem 'net-smtp'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
-gem 'carrierwave', '~> 2.0'
-gem 'ransack'
+gem 'bootstrap','~> 4.1.1'
+gem 'jquery-rails'
 
 gem 'pry-byebug',group: :development
 

@@ -1,6 +1,11 @@
 class ApplicationController < ActionController::Base
+  protect_from_forgery with: :exception
+
+# ログイン済ユーザーのみにアクセスを許可する
+# before_action :authenticate_member!
+
+# deviseコントローラーにストロングパラメータを追加する
  before_action :configure_permitted_parameters, if: :devise_controller? 
- protect_from_forgery
 
 #ログイン後のリダイレクト先をトップページに、それ以外の条件に合致した場合はプロフィール編集画面をリダイレクト先にする
 def after_sign_in_path_for(resource)
@@ -20,9 +25,15 @@ def after_sign_out_path_for(resource)
  tops_path
 end
 
+#ログイン後、tops/indexに移動する
+  def after_sign_in_path_for(resource)
+    tops_path
+  end
+
 def configure_permitted_parameters
  added_attrs = [ :name, :email, :password ]
  devise_parameter_sanitizer.permit(:sign_up, keys: added_attrs)
+ devise_parameter_sanitizer.permit(:account_update, keys: added_attrs)
 end
 
 end

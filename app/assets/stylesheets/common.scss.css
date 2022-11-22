@@ -335,7 +335,6 @@ submit{
 /*トップ検索エリアタイトル設定*/
 .search-area-title{
  font-size: 30px;
- font-weight: bold;
  font-family: verdana, arial, helvetica, sans-serif;
 }
 
@@ -445,4 +444,9 @@ table.new-room th::after{
 /*ユーザーアカウント編集ボタン設定*/
 .actions{
  margin-top: 20px;
+}
+
+/*検索結果ページタイトル設定*/
+.search-result-title{
+ Font-size: 16px;
 }

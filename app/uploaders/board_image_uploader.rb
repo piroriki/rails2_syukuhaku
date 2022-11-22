@@ -1,4 +1,4 @@
-class ImageUploader < CarrierWave::Uploader::Base
+class AvatarUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
@@ -7,6 +7,18 @@ class ImageUploader < CarrierWave::Uploader::Base
 
 
   storage :file # 新規追加
+
+  def store_dir
+    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+  end
+
+  def default_url
+    'default-icon.jpg'
+  end
+
+  def extension_whitelist # 拡張子の制限
+    %w[jpg jpeg gif png]
+  end
 end
 
 

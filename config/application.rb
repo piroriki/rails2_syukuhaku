@@ -12,6 +12,7 @@ module PoteShare
     config.load_defaults 6.1
     config.i18n.default_locale = :ja
     config.time_zone = 'Tokyo'
+    config.autoload_paths += Dir[Rails.root.join('app', 'uploaders')] #新規追加
 
     # Configuration for the application, engines, and railties goes here.
     #

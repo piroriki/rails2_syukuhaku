@@ -1,0 +1,16 @@
+<%= render partial: "members/shared/partial-header" %>
+
+<p class="search-result-title">検索結果：</p>　<!-- 検索結果件数を表示させる -->
+
+<table class="search">
+ <tbody>
+  <% @rooms.each do |room| %>
+   <tr>
+    <td><%= room.name %></td> <!-- roomデータベースで表示させたいエリアのキーワードはどこに保存される？ -->
+   </tr>
+  <% end %>
+ </tbody>
+</table>
+
+
+<%= render partial: "members/shared/partial-footer" %>

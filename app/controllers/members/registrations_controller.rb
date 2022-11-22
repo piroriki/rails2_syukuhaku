@@ -3,12 +3,11 @@
 class Members::RegistrationsController < Devise::RegistrationsController
  before_action :configure_account_update_params, only: [:update] # 新規追加
 
-# 新規追加
- def account
-  @member = current_member
- end
+ protected #　新規追加
 
- # protected
+ def after_update_path_for(resource)
+  member_path(id: current_member.id)
+ end
 
  # def update_resource(resource, params)
  # resource.update_without_password(params)
