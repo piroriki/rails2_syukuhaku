@@ -4,7 +4,7 @@ class Room < ApplicationRecord
  # 検索方法分岐
   def self.looks(search, word)
     if search == "perfect_match" #roomテーブルで対象となるエリア(この場合のname)に関する検索ワードはどこに保存される？
-      @room = Rooom.where("name LIKE?", "#{word}") #%を追加したところが曖昧検索に該当する
+      @room = Room.where("name LIKE?", "#{word}") #%を追加したところが曖昧検索に該当する
     elsif search == "forward_match"
       @room = Room.where("name LIKE?","#{word}%")
     elsif search == "backward_match"

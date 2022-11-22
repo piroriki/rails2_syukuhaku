@@ -1,5 +1,4 @@
 class RoomsController < ApplicationController
- before_action :set_q,only: [:index, :search]
 
 # user.idは現在ログイン中のユーザーのみで絞り、room.idはログイン中に使用されている関連idのみで絞り込む
 
@@ -38,17 +37,5 @@ class RoomsController < ApplicationController
 
  def destroy
  end
-
-# 検索機能として新規追加
- def search
-  @results = @q.result
- end
-
- private
-
- def set_q
-  @q = Room.ransack(params[:q]) 
- end
-
 
 end

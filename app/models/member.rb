@@ -1,10 +1,11 @@
 class Member < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
+  mount_uploader :avatar,AvatarUploader #新規追加
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
-# mount_uploader :avatar, AvatarUploader
 
  def update_without_current_password(params, *options) # 新規追加
   params.delete(:current_password)

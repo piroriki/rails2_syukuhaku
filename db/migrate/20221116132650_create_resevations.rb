@@ -1,6 +1,6 @@
 class CreateResevations < ActiveRecord::Migration[6.1]
   def change
-    create_table :resevations do |t|
+    create_table :reservations do |t|
       t.string :image
       t.string :name
       t.text :introduction

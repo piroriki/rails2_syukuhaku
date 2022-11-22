@@ -1,24 +1,24 @@
 class ReservationsController < ApplicationController
-# user.idは現在ログイン中のユーザーのみに絞り、reservation.idはログイン中のユーザー関連のidのみで絞り込む
+# member.idは現在ログイン中のユーザーのみに絞り、reservation.idはログイン中のユーザー関連のidのみで絞り込む
 
  def index
-  @user = User.all
-  @user = User.find(current_user.id)
-  @reservation = Reservations.all
+  @members = Member.all.includes(:rooms)
+  @members = Member.find(current_member.id)
+  @reservations = Reservations.all
  end
 
  def show
-  @user = User.find(current_user.id)
+  @member = Member.find(current_member.id)
   @reservation = Reservation.find(params[:id])
  end
 
  def new
-  @user = User.find(current_user.id)
+  @member = Member.find(current_member.id)
 　@reservation = Reservation.new
  end
 
  def create
-  @reservation = Reservation.new(params.require(:room).permit(:id, :name, :introduction, :price, :image))
+  @reservation = Reservation.new(params.require(:room).permit(:id, :image, :name, :introduction, :price, :finished_day))
   if @reservation.save
    redirect_to :reservations
   else

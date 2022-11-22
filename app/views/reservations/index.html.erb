@@ -1,5 +1,36 @@
-<%= render partial: "devise/shared/partial-header" %>
+<%= render partial: "members/shared/partial-header" %>
+
+<h3>予約済みルーム一覧</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>ルーム画像</th>
+      <th>ルーム名</th>
+      <th>ルーム紹介</th>
+      <th>合計料金</th>
+　　　 <th>開始日</th>
+      <th>終了日</th>
+      <th>予約確定日時</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reservations.each do |rv| %>
+      <tr>
+        <td><%= rv.image %></td>
+        <td><%= rv.name %></td>
+        <td><%= rv.introduction %></td>
+        <td><%= rv.price %></td>
+        <td><%= rv.created_at.to_s(:datetime_jp) %></td>
+        <td><%= rv.finished_day.to_s(:datetime_jp) %></td>
+        <td><%= rv.updated_at.to_s(:datetime_jp) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p><%= link_to "ユーザー新規登録", :new_user %></p>
 
 
-
-<%= render partial: "devise/shared/partial-footer" %>
+<%= render partial: "members/shared/partial-footer" %>
