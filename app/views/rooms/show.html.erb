@@ -1,36 +1,77 @@
+<head> <!--　headタグ内に必要なCSS系リンクをおく　-->
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+
+<script src="https://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript" language="javascript"></script>
+<script src="../common/js/bootstrap.js"></script>
+<link rel="stylesheet" href="../common/css/bootstrap.css">
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="bootstrap-datepicker/css/bootstrap-datepicker.min.css">
+<script type="text/javascript" src="bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript" src="bootstrap-datepicker/locales/bootstrap-datepicker.ja.min.js"></script>
+
+
+<!-- bootstrapで必要なCSSを以下に記載　-->
+<style>
+</style>
+
+</head>
+
+<body>
 <%= render partial: "members/shared/partial-header" %>
 
-<div class="show-rooms">
+<!-- 登録済みルームの情報を画像の直下に表示させる -->
 
-<!-- 登録済みルームの情報を表示させる -->
-  
-<table>
+<!--　roomインスタンスの画像URLを使用して表示させる　-->
+<%= image_tag @room.image_url if @room.image? %>
+
+<div class="mt-4 ml-3 mb-4">   
  <tr>
-  <th>ルーム名</th>
-  <td><%= @room.name %></td>
+  <p class="font-weight-bold"><%= @room.name %></p>
  </tr>
 
  <tr>
-  <th>ルーム紹介</th>
-  <td><%= @room.introduction %></td>
+  <p class="border-bottom"><%= @room.address %></p>
  </tr>
 
  <tr>
-  <th>料金</th>
-  <td><%= @room.price %></td>
+  <p class="border-bottom"><%= @room.introduction %><p>
  </tr>
-
- <tr>
-  <th>住所</th>
-  <td><%= @room.address %></td>
- </tr>
-
- <tr>
-  <th>ルーム画像</th>
-  <td><%= image_tag @room.image.url, class:"show-images" %></td>  <!--　roomインスタンスの画像URLを使用して表示させる　-->
- </tr>
-
-</table>
 </div>
 
+
+<!--　ルーム予約フォームを右端に寄せて表示する-->
+
+ <div class="col-md-4 float-right border">
+  <p class="price-label" style="font-weight:bold;">¥<%= @room.price %>/日</p><br>
+  
+  <%= form_with model:@reservation, url:new_reservation_path,local:true do |f| %>
+    <%= f.hidden_field:room_id, value:@room.id %>
+    <%= f.hidden_field:member_id, value:current_member.id %>
+    <%= f.label:started_day,"開始日" %>
+    <%= f.date_field:"started_day",class="form-control mb-3" %>
+    <%= f.label:"finished_day","終了日" %>
+    <%= f.date_field:finished_day, class="form-control mb-3" %>
+    <%= f.label:people_number,"人数" %>
+    <%= f.number_field:people_number, class="form-control mb-3" %>
+   <div class="col-xs-8">
+    <%= f.submit "予約する", class="btn btn-primary form-control" %>
+   </div>
+  <% end %>
+ </div>
+
+
 <%= render partial: "members/shared/partial-footer" %>
+
+<!-- jQuery --> <!--　必要なJS系リンクをbody閉じタグ直前におく　-->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<!-- popper.js --><script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+<!-- bootstrap.js -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>

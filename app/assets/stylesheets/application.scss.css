@@ -13,12 +13,5 @@
  */
 
 /*bootstrap新規追加*/
-
-/*
-*= require bootstrap/dist/css/bootstrap.min
-*= require_tree .
-*= require_self
-*/
-
 @import "bootstrap-sprockets";
 @import "bootstrap";

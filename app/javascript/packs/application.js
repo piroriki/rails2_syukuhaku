@@ -12,7 +12,6 @@
 //= require turbolinks
 //= require bootstrap/dist/js/bootstrap.min 
 //= require jquery/dist/jquery.js //node_modules内にあるこの行を追加
-//= require_tree .
 
 import 'jquery/dist/jquery.js'
 import 'popper.js/dist/popper.js'

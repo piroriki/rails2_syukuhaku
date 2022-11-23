@@ -14,11 +14,13 @@ class ReservationsController < ApplicationController
 
  def new
   @member = Member.find(current_member.id)
-　@reservation = Reservation.new
+  @room = Room.find(params[:id])
+  @reservation = Reservation.new
  end
 
  def create
   @reservation = Reservation.new(params.require(:room).permit(:id, :image, :name, :introduction, :price, :finished_day))
+  @reservation.room_id = Room.find(params[:id])
   if @reservation.save
    redirect_to :reservations
   else
