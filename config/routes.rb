@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   }
 
   devise_scope :member do
-   post '/members/sign_up' => 'members/registration#new' 
+  # post '/members/sign_up' => 'members/registration#new' 
    get '/members/sign_out' => 'members/sessions#destroy'
    post '/members/sign_out' => 'members/sessions#destroy'
    get '/members/account' => 'members/registrations#account'

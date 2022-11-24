@@ -27,7 +27,7 @@
 <!--　roomインスタンスの画像URLを使用して表示させる　-->
 <%= image_tag @room.image_url if @room.image? %>
 
-<div class="mt-4 ml-3 mb-4">   
+<div class="mt-4 ml-3 mb-4">
  <tr>
   <p class="font-weight-bold"><%= @room.name %></p>
  </tr>
@@ -47,17 +47,22 @@
  <div class="col-md-4 float-right border">
   <p class="price-label" style="font-weight:bold;">¥<%= @room.price %>/日</p><br>
   
-  <%= form_with model:@reservation, url:new_reservation_path,local:true do |f| %>
+  <%= form_with model:@reservation, method: :get, url:new_reservation_path, local:true do |f| %>
+
     <%= f.hidden_field:room_id, value:@room.id %>
-    <%= f.hidden_field:member_id, value:current_member.id %>
+    <%= f.hidden_field:reservation_id, value:@reservation.id %>
+
     <%= f.label:started_day,"開始日" %>
-    <%= f.date_field:"started_day",class="form-control mb-3" %>
+    <%= f.date_field:"started_day",class:"form-control mb-3" %>
+
     <%= f.label:"finished_day","終了日" %>
-    <%= f.date_field:finished_day, class="form-control mb-3" %>
-    <%= f.label:people_number,"人数" %>
-    <%= f.number_field:people_number, class="form-control mb-3" %>
+    <%= f.date_field:finished_day, class:"form-control mb-3" %>
+
+    <%= f.label:people,"人数" %>
+    <%= f.number_field:people, class:"form-control mb-3" %>
+
    <div class="col-xs-8">
-    <%= f.submit "予約する", class="btn btn-primary form-control" %>
+    <%= f.submit "予約する", class:"btn btn-primary form-control" %>
    </div>
   <% end %>
  </div>

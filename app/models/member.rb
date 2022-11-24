@@ -2,7 +2,12 @@ class Member < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
-  mount_uploader :avatar,AvatarUploader #新規追加
+# uploaderクラスとの関連づけ
+  mount_uploader :avatar,AvatarUploader
+
+# roomモデル、reservationモデルとの関連づけ
+  has_many :reservations
+  has_many :rooms
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

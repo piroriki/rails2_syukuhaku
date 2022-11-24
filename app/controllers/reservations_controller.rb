@@ -13,13 +13,16 @@ class ReservationsController < ApplicationController
  end
 
  def new
-  @member = Member.find(current_member.id)
-  @room = Room.find(params[:id])
+  @member = Member.find(params[:reservation][:room_id])
   @reservation = Reservation.new
+binding.pry
+  @price = @room.price * @reservation.people * (@reservation.finished_day - @reservation.started_day).to_i
+  @days = (@reservation.finishe_day - @reservation.started_day).to_i  
+
  end
 
  def create
-  @reservation = Reservation.new(params.require(:room).permit(:id, :image, :name, :introduction, :price, :finished_day))
+  @reservation = Reservation.new(params.require(:reservation).permit(:id, :reserve_image, :name, :introduction, :price, :finished_day, :started_day, :people, :room_id, :member_id))
   @reservation.room_id = Room.find(params[:id])
   if @reservation.save
    redirect_to :reservations
@@ -32,6 +35,9 @@ class ReservationsController < ApplicationController
  end
 
  def update
+  @room = Room.find(params[:id])
+  @member =Member.find(params[:id])
+  @reservations = Reservation.find(params[:id])
  end
 
  def destroy

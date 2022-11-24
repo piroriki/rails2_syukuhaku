@@ -1,7 +1,9 @@
 class Room < ApplicationRecord
+
+# uploaderクラスとの関連づけ
  mount_uploader :image,ImageUploader
 
- # 検索方法分岐
+# 検索方法分岐
   def self.looks(search, word)
     if search == "perfect_match" #roomテーブルで対象となるエリア(この場合のname)に関する検索ワードはどこに保存される？
       @room = Room.where("name LIKE?", "#{word}") #%を追加したところが曖昧検索に該当する
@@ -15,5 +17,8 @@ class Room < ApplicationRecord
       @room = Room.all #上記条件に合致しなければ、条件なしの検索結果が表示される
     end
   end
+
+# memberモデルおよびreservationモデルとの関連づけ
+ belongs_to :member
 
 end

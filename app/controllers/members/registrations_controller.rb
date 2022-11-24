@@ -5,9 +5,44 @@ class Members::RegistrationsController < Devise::RegistrationsController
 
  protected #　新規追加
 
- def after_update_path_for(resource)
-  member_path(id: current_member.id)
- end
+  def after_update_path_for(resource)
+   member_path(id: current_member.id)
+  end
+
+  def create
+    build_resource(sign_up_params)
+
+    resource.save
+    yield resource if block_given?
+   if resource.persisted?
+    
+    if resource.active_for_authentication?
+      set_flash_message! :notice, :"signed_up"
+      sign_up(resource_name,resource)
+      respond_with resource,location: after_sign_up_path_for(resource)
+    else
+     set_flash_messsage! :notice, :"signed_up_but_#{resource.inactive_message}"
+     expire_data_after_sign_in!
+     respond_with resource, location: after_inactive_sign_up_path_for(resource)
+    end
+   
+   else
+    clean_up_passwords resource
+    set_minimum_password_length
+    respond_with resource, status: :see_other 
+    #登録失敗時のrespond_withにerror出したいので、ここで303 statusを追加
+   
+   end    
+  end
+
+  def edit
+    super
+  end
+
+  def update
+    super
+  end
+end
 
  # def update_resource(resource, params)
  # resource.update_without_password(params)
@@ -24,39 +59,6 @@ class Members::RegistrationsController < Devise::RegistrationsController
   # def new
   #   super
   # end
-
-  # POST /resource #新規追加
-  def create
-   build_resource(sign_up_params)
-
-   resource.save
-   yield resource if block_given?
-   if resource.persisted?
-    if resource.active_for_authentication?
-      set_flash_message! :notice, :"signed_up"
-      sign_up(resource_name,resource)
-      respond_with resource,location: after_sign_up_path_for(resource)
-    else
-     set_flash_messsage! :notice, :"signed_up_but_#{resource.inactive_message}"
-     expire_data_after_sign_in!
-     respond_with resource, location: after_inactive_sign_up_path_for(resource)
-    end
-   else
-    clean_up_passwords resource
-    set_minimum_password_length
-    respond_with resource, status: :see_other # 登録失敗時のrespond_withにerror出したいので、ここで303 statusを追加
-   end    
-  end
-
-  # GET /resource/edit
-  def edit
-    super
-  end
-
-  # PUT /resource
-  def update
-    super
-  end
 
   # DELETE /resource
   # def destroy
@@ -93,4 +95,3 @@ class Members::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
-end
