@@ -16,7 +16,7 @@
  <p class="font-weight-bold">ルーム情報登録</p>
 </div>
 
-<%= form_with model:@room do |room|%> 
+<%= form_with model:@room do |room| %> 
 <!-- ルーム登録画面で各種情報を設定させる -->
 
  <table class="table table-striped table-bordered">
@@ -45,8 +45,8 @@
     <td><%= room.file_field :image %></td>
     <td><%= room.hidden_field :image_cache %></td>
    </tr>
-   
  </table>
+    <%= room.hidden_field :member_id, value:@member.id %>
 
  <p class="ml-3"><%= room.submit"登録" %></p>
 
