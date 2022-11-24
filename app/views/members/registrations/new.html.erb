@@ -2,7 +2,7 @@
 
 <p class="sign_up_title">新しいアカウントを作成</p>
 
-<%= form_with model: @member,url: new_member_registration_path, local: true do |f| %>
+<%= form_with model: @member,url: member_registration_path, local: true do |f| %>
   <%= render "members/shared/error_messages", resource: resource %>
 
 <!-- 新規登録画面の入力内容を実装する -->
