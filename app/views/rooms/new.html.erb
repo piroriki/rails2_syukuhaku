@@ -41,10 +41,11 @@
    </tr>
 
    <tr>
-    <th><%= room.label :image,"ルーム画像" %></th>
+    <th><%= room.label :image,"ルーム画像" ,accept: 'image/*', onchange: 'previewFileWithId(preview)'%></th>
     <td><%= room.file_field :image %></td>
+    <td><%= room.hidden_field :image_cache %></td>
    </tr>
-  </div>
+   
  </table>
 
  <p class="ml-3"><%= room.submit"登録" %></p>

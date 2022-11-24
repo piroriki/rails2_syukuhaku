@@ -1,27 +1,28 @@
 # frozen_string_literal: true
 
-class Members::RegistrationsController < Devise::RegistrationsController
- before_action :configure_account_update_params, only: [:update] # 新規追加
-
- protected #　新規追加
-
-  def after_update_path_for(resource)
-   member_path(id: current_member.id)
-  end
-end
-
- # def update_resource(resource, params)
- # resource.update_without_password(params)
- # end
-
- # def configure_account_update_params
- # devise_parameter_sanitizer.permit(:account_update, keys: [:name])
- # end
-
-
+class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
+  # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
+  # def new
+  #   super
+  # end
+
+  # POST /resource
+  # def create
+  #   super
+  # end
+
+  # GET /resource/edit
+  # def edit
+  #   super
+  # end
+
+  # PUT /resource
+  # def update
+  #   super
+  # end
 
   # DELETE /resource
   # def destroy
@@ -58,3 +59,4 @@ end
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+end

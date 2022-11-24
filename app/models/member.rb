@@ -25,10 +25,4 @@ class Member < ApplicationRecord
   result
  end
 
- with_options presence: true do
-  validates :name
-  validates :email
-  validates :profile, length: {maximum: 200 }
- end
-
 end

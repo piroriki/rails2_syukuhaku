@@ -20,6 +20,7 @@ class RoomsController < ApplicationController
    redirect_to room_path(@room)  # ルーム確認画面に飛ばす
   else
    @member = Member.find_by(params[:room][:member_id])
+binding.pry
    render "new"
   end
  end

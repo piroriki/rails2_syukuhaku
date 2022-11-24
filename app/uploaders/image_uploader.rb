@@ -1,13 +1,26 @@
 class ImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  include CarrierWave::MiniMagick
   process resize_to_fit: [300, 200]
 
   # Choose what kind of storage to use for this uploader:
 
+  include CarrierWave::MiniMagick
 
-  storage :file # 新規追加
+  storage :file
+
+ def store_dir # 新規追加
+   "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+ end
+
+ def default_url
+   'room01.jpg'
+ end
+
+ def extension_whitelist
+   %w[jpg jpeg gif png]
+ end
+
 end
 
 

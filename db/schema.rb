@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 2022_11_23_074904) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
-    t.string "profile"
     t.string "avatar"
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
@@ -34,7 +33,6 @@ ActiveRecord::Schema.define(version: 2022_11_23_074904) do
     t.datetime "finished_day"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "reserve_image"
     t.decimal "people"
     t.datetime "started_day"
   end

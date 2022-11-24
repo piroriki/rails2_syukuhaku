@@ -7,7 +7,7 @@
 
 <!-- 新規登録画面の入力内容を実装する -->
 
-
+<table class="table table-borderd">
 <div class="new_member_field">
  　 <div id="required">
     <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder:"ユーザー名" %><br />
@@ -32,5 +32,6 @@
     </div>
     <% end %>
 </div>
+</table>
 
 <%= render "members/shared/partial-footer" %>
