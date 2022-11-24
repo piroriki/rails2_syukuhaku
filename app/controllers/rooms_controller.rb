@@ -14,21 +14,18 @@ class RoomsController < ApplicationController
  end
  
  def create
-  @room = Room.new(params.require(:room).permit(:member_id, :name, :address, :introduction, :price, :image))
-binding.pry
-  if @room.save
-binding.pry
+  @room = Room.new(params.require(:room).permit(:member_id, :name, :address, :introduction, :price, :image, :image_cache))
+  if @room.save!
    flash[:notice] = "ルーム登録が完了しました"
    redirect_to room_path(@room)  # ルーム確認画面に飛ばす
   else
    @member = Member.find_by(params[:room][:member_id])
-binding.pry
    render "new"
   end
  end
 
  def show
-  @member = Member.find(params[:member_id][:room])
+  @member = current_member
   @room = Room.find(params[:id])
   @reservation = Reservation.new
 

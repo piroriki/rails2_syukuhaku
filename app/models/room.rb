@@ -3,8 +3,9 @@ class Room < ApplicationRecord
 # uploaderクラスとの関連づけ
  mount_uploader :image,ImageUploader
 
-# memberモデルおよびreservationモデルとの関連づけ
+# memberモデル、reservationモデルとの関連づけ
  belongs_to :member
+ has_many :reservations
 
 
 # 検索方法分岐

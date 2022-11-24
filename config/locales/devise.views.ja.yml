@@ -1,5 +1,9 @@
 ja:
   activerecord:
+    errors:
+      messages:      
+        record_invalid:"バリデーションに失敗しました: %{errors}"
+
     attributes:
       user:
         current_password: "現在のパスワード"
