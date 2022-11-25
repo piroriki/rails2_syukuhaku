@@ -17,6 +17,7 @@ class ReservationsController < ApplicationController
   @member = Member.find(current_member.id)
   @room = Room.find(params[:reservation][:room_id])
   @reservation = Reservation.new
+bindng.pry
   @price = @room.price * @reservation.people * (@reservation.finished_day - @reservation.started_day).to_i # 合計金額計算
   @days = (@reservation.finishe_day - @reservation.started_day).to_i  # 宿泊日数計算
  

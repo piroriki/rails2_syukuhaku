@@ -45,11 +45,13 @@
 <!--　ルーム予約フォームを右端に寄せて表示する-->
 
  <div class="col-md-4 float-right border">
- 
-  <%= form_with(model:[@room, @reservation],method: :get, url:new_reservation_path, local:true) do |f| %>
+
+  <%= form_with(model:@reservation, method: :get, url:new_room_reservation_path(@room), local:true) do |f| %>
 
     <%= f.hidden_field:room_id, value:@room.id %>
+<%binding.pry%>
     <%= f.hidden_field:member_id, value:@member.id %>
+<%binding.pry%>
 
     <p class="price-label" style="font-weight:bold; margin-top:20px; margin-bottom:20px; font-size:20px;">
      ¥<%= @room.price %>/日
