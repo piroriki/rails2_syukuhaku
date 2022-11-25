@@ -18,15 +18,15 @@
  </div>
 
  <tr>
-  <h3><%= @room.price %></h3>
+  <h3>¥<%= @room.price %>/日</h3>
  </tr>
  <tr>
   <th>開始日</th>
-  <td><%= @room.started_at %></td>
+  <td><%= @reservation.started_day %></td>
  </tr>
  <tr>
   <th>終了日</th>
-  <td><%= @room.finished_day %></td>
+  <td><%= @reservation.finished_day %></td>
  </tr>
  <tr>
   <th>使用日数</th>

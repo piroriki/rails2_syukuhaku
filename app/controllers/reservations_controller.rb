@@ -4,7 +4,8 @@ class ReservationsController < ApplicationController
  def index
   @members = Member.all.includes(:rooms)
   @members = Member.find(current_member.id)
-  @reservations = Reservations.all
+  @room = Room.find(params[:room_id])
+  @reservations = Reservation.find(params[:id])
  end
 
  def show
@@ -13,20 +14,21 @@ class ReservationsController < ApplicationController
  end
 
  def new
-  @member = Member.find(params[:reservation][:room_id])
+  @member = Member.find(current_member.id)
+  @room = Room.find(params[:reservation][:room_id])
   @reservation = Reservation.new
-binding.pry
-  @price = @room.price * @reservation.people * (@reservation.finished_day - @reservation.started_day).to_i
-  @days = (@reservation.finishe_day - @reservation.started_day).to_i  
-
+  @price = @room.price * @reservation.people * (@reservation.finished_day - @reservation.started_day).to_i # 合計金額計算
+  @days = (@reservation.finishe_day - @reservation.started_day).to_i  # 宿泊日数計算
+ 
  end
 
  def create
-  @reservation = Reservation.new(params.require(:reservation).permit(:id, :reserve_image, :name, :introduction, :price, :finished_day, :started_day, :people, :room_id, :member_id))
-  @reservation.room_id = Room.find(params[:id])
-  if @reservation.save
+  @reservation = Reservation.new(reservation_params)
+binding.pry
+  if @reservation.save!
    redirect_to :reservations
   else
+binding.pry
    render "new"
   end
  end
@@ -43,4 +45,8 @@ binding.pry
  def destroy
  end
 
-end
+ private
+  def reservation_params
+   params.require(:reservation).permit(:id, :price, :finished_day, :started_day, :people).merge(:room_id, :member_id)
+  end
+ end
