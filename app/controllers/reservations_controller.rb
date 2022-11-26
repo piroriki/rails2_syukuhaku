@@ -3,6 +3,9 @@ class ReservationsController < ApplicationController
 
  def index
   @reservations = Reservation.where(member_id: current_member.id)
+  @reservations_roomid = Reservation.select(:room_id).where(member_id:@member)
+  @rooms = Room.where(id:@reservations_roomid)
+binding.pry
  end
 
  def show
@@ -10,21 +13,25 @@ class ReservationsController < ApplicationController
  end
 
  def new
+ # @a = "false"
   @room = Room.find(params[:reservation][:room_id])
   @reservation = Reservation.new(reservation_params)
+  @reservation.price = @reservation.sum_of_price # reservationのpriceに変数として追加
+ # binding.pry
+ # if @reservation.valid?
+ # @a = "true"
+ # @days = (@reservation.finished_day.to_date - @reservation.started_day.to_date).to_i
+ # @price = @room.price * @reservation.people * @days
+ # end 
  end
 
  def create
   @room = Room.find(params[:reservation][:room_id])
   @reservation = Reservation.new(reservation_params)
-  
-  @price = @room.price * @reservation.people * (@reservation.finished_day - @reservation.started_day).to_i  # 合計金額計算
-  @days = (@reservation.finishe_day - @reservation.started_day).to_i  # 宿泊日数計算
- 
-binding.pry
   if @reservation.save!
-   flesh[:notice] = "予約を確定しました"
-   redirect_to :reservation_path
+binding.pry
+   flash[:notice] = "予約を確定しました"
+   redirect_to room_reservation_path(@reservation.room_id, @reservation.id) # 予約後確認ページへとぶ、idを渡したい順番を前から順に指定する
   else
 binding.pry
    render "new"

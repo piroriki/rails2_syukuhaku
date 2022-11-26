@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   resources :tops
 
-  get 'reservation/new' => 'reservations#new'
+   post '/rooms/:room_id/reservations/new' => 'reservations#create'
 
   resources :rooms do
    resources :reservations

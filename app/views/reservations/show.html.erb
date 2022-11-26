@@ -13,38 +13,31 @@
 <%= render partial: "members/shared/partial-header" %>
 
 
-<h3>予約済みルーム一覧</h3>
-
 <table class="table table-striped table-bordered">
-  <thead>
-    <tr>
-      <th>ルーム画像</th>
-      <th>ルーム名</th>
-      <th>ルーム紹介</th>
-      <th>合計料金</th>
-　　　 <th>開始日</th>
-      <th>終了日</th>
-      <th>予約確定日時</th>
-    </tr>
-  </thead>
+ <div class="mt-4 ml-3 mb-4">
+  <p class="font-weight-bold">予約内容確認</p>
+ </div>
+  
+  <tr>
+   <th>予約した部屋</th>
+   <td><%= @reservation.room.name %></td>
+  </tr>
 
-  <tbody>
-    <% @reservations.each do |rv| %>
-      <tr>
-        <td>
-         <%= image_tag @reservation.room.image.url, class: "posts-image", size: "300×200" %>
-        </td>
-        <td><%= rv.name %></td>
-        <td><%= @reservation.room.introduction %></td>
-        <td><%= rv.price %></td>
-        <td><%= rv.started_day.to_s(:reservetime_jp) %></td>
-        <td><%= rv.finished_day.to_s(:reservetime_jp) %></td>
-        <td><%= rv.updated_at.to_s(:datetime_jp) %></td>
-      </tr>
-    <% end %>
-  </tbody>
+  <tr>
+   <th>開始日</th>
+   <td><%= @reservation.started_day.to_s(:reservetime_jp) %></td>
+  </tr>
+ 
+  <tr>
+   <th>終了日</th>
+   <td><%= @reservation.finished_day.to_s(:reservetime_jp) %></td>
+  </tr>
+ 
+  <tr>
+   <th>価格</th>
+   <td><%= @reservation.price %>円</td>
+  </tr>
 </table>
-
 
 <%= render partial: "members/shared/partial-footer" %>
 
