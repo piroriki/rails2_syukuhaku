@@ -32,10 +32,10 @@
     <% @reservations.each do |rv| %>
       <tr>
         <td>
-         <%= image_tag @reservation.room.image.url, class: "posts-image", size: "300×200" %>
+         <%= image_tag rv.room.image.url, class: "posts-image", size: "300×200" %>
         </td>
-        <td><%= rv.name %></td>
-        <td><%= @reservation.room.introduction %></td>
+        <td><%= rv.room.name %></td>
+        <td><%= rv.room.introduction %></td>
         <td><%= rv.price %></td>
         <td><%= rv.started_day.to_s(:reservetime_jp) %></td>
         <td><%= rv.finished_day.to_s(:reservetime_jp) %></td>

@@ -5,7 +5,7 @@ class ReservationsController < ApplicationController
   @reservations = Reservation.where(member_id: current_member.id)
   @reservations_roomid = Reservation.select(:room_id).where(member_id:@member)
   @rooms = Room.where(id:@reservations_roomid)
-binding.pry
+# binding.pry
  end
 
  def show
@@ -29,7 +29,7 @@ binding.pry
   @room = Room.find(params[:reservation][:room_id])
   @reservation = Reservation.new(reservation_params)
   if @reservation.save!
-binding.pry
+# binding.pry
    flash[:notice] = "予約を確定しました"
    redirect_to room_reservation_path(@reservation.room_id, @reservation.id) # 予約後確認ページへとぶ、idを渡したい順番を前から順に指定する
   else
