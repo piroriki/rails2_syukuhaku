@@ -46,7 +46,7 @@
     <td><%= room.hidden_field :image_cache %></td>
    </tr>
  </table>
-    <%= room.hidden_field :member_id, value:@member.id %>
+    <%= room.hidden_field :member_id, value:current_member.id %>
 
  <p class="ml-3"><%= room.submit"登録" %></p>
 

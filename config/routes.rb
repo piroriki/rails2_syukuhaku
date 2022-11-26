@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   resources :tops
 
+  get 'reservation/new' => 'reservations#new'
+
   resources :rooms do
    resources :reservations
    collection do

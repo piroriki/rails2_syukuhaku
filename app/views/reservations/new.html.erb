@@ -12,6 +12,8 @@
 <body>
 <%= render partial: "members/shared/partial-header" %>
 
+
+<%= form_with model:@reservation, url:new_room_reservation_path(@room), local:true do |r|%> 
 <table class="table table-striped table-bordered">
  <div class="mt-4 ml-3 mb-4">
   <p class="font-weight-bold">予約内容確認</p>
@@ -21,40 +23,44 @@
   <h3>¥<%= @room.price %>/日</h3>
  </tr>
  <tr>
+
   <th>開始日</th>
-  <td><%= @reservation.started_day %></td>
+  <td><%= @reservation.started_day.to_s(:datetime_jp) %></td>
  </tr>
  <tr>
+
   <th>終了日</th>
-  <td><%= @reservation.finished_day %></td>
+  <td><%= @reservation.finished_day.to_s(:datetime_jp) %></td>
  </tr>
  <tr>
+
   <th>使用日数</th>
   <td><%= @days %></td>
  </tr>
  <tr>
+
   <th>人数</th>
   <td><%= @reservation.people %>人</td>
  </tr>
  <tr>
+
   <th>合計金額</th>
   <td><%= @price %></td>
  </tr>
-</table>
 
-<!--　form_withでreservation関連の変数を登録させる　-->
-
-<%= form_with model:@reservation do |r|%> 
  <tr>
-   <%= r.hidden_field :room_id, value:@room.id %>
-   <%= r.hidden_field :people %>
-   <%= r.hidden_field :started_day_at %>
+   <%= r.hidden_field :member_id, value: current_member.id %>
+   <%= r.hidden_field :room_id, value:@reservation.room.id %>
+   <%= r.hidden_field :people, value:@reservation.people %>
+   <%= r.hidden_field :started_day %>
    <%= r.hidden_field :finished_day %>
-   <td><%= r.submit "予約を確定する" %></td>
-<% end %>
-   </tr>
+   <td>
+    <%= r.submit "予約を確定する", class:"btn btn-primary form-control" %>
+   </td>
+  </tr>
     <%= link_to "ルーム詳細に戻る",room_path(@room) %>
-   <tr>
+ <tr>
+<% end %>
 
 
 <%= render partial: "members/shared/partial-footer" %>

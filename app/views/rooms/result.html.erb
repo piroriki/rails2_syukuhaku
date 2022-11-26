@@ -22,53 +22,27 @@
 <body>
 <%= render partial: "members/shared/partial-header" %>
 
-<!-- 登録済みルームの情報を画像の直下に表示させる -->
 
-<!--　roomインスタンスの画像URLを使用して表示させる　-->
-<%= image_tag @room.image_url if @room.image? %>
+<h2>検索結果：<%= @addresses.count%>件</h2> # 住所検索結果を表示
 
-<div class="mt-4 ml-3 mb-4">
- <tr>
-  <p class="font-weight-bold"><%= @room.name %></p>
- </tr>
-
- <tr>
-  <p class="border-bottom"><%= @room.address %></p>
- </tr>
-
- <tr>
-  <p class="border-bottom"><%= @room.introduction %><p>
- </tr>
-</div>
-
-
-<!--　ルーム予約フォームを右端に寄せて表示する-->
-
- <div class="col-md-4 float-right border">
-
-  <%= form_with model:@reservation, method: :get, url:new_room_reservation_path(@room), local:true do |f| %>
-
-    <%= f.hidden_field:room_id, value:@room.id %>
-    <%= f.hidden_field:member_id, value:current_member.id %>
-
-    <p class="price-label" style="font-weight:bold; margin-top:20px; margin-bottom:20px; font-size:20px;">
-     ¥<%= @room.price %>/日
-    </p><br>
-
-    <%= f.label:started_day,"開始日" %>
-    <%= f.date_field:"started_day", min: Date.current, required:true, class:"form-control mb-3" %>
-
-    <%= f.label:"finished_day","終了日" %>
-    <%= f.date_field:finished_day, min:Date.current.next_day, required:true, class:"form-control mb-3" %>
-
-    <%= f.label:people,"人数" %>
-    <%= f.number_field:people, min:1, required:true, class:"form-control mb-3" %>
-
-   <div class="col-xs-8">
-    <%= f.submit "予約する", class:"btn btn-primary form-control" %>
-   </div>
-  <% end %>
- </div>
+<% @addresses.each do |address| %>
+  <div class="room-result">
+    <div class="room-result-content">
+      <%= link_to room_path(address), class: "" do %>
+        <% if address.img_name? %>
+          <%= image_tag address.img_name.url, :size => '200x100', class: 'room-img' %>
+        <% else %>
+          <%= image_tag 'default_room01.jpeg', :size => '200x100', class: 'room-img' %>
+        <% end %>
+        <div class="room-result-about">
+          <p class="room-result-name"><%= address.name %></p>
+          <p class="room-result-eria"><%= address.address %></p>
+          <p class="room-result-price"><%= "¥ #{address.price}" %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
 
 
 <%= render partial: "members/shared/partial-footer" %>
