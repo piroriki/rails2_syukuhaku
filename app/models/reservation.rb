@@ -1,8 +1,8 @@
 class Reservation < ApplicationRecord
 
 # memberモデル、roomモデルとの関連づけ
- belongs_to :member
- belongs_to :room
+ belongs_to :member, optional: true
+ belongs_to :room, optional: true
 
 # 使用日数、合計金額を算出する計算式を追加（モデル内では別モデルの変数でもインスタンス変数の形で呼び出さない）
  def sum_of_days

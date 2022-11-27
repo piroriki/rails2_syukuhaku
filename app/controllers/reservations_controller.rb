@@ -16,8 +16,8 @@ class ReservationsController < ApplicationController
  # @a = "false"
   @room = Room.find(params[:reservation][:room_id])
   @reservation = Reservation.new(reservation_params)
-  @reservation.price = @reservation.sum_of_price # reservationのpriceに変数として追加
- # binding.pry
+  @price = @reservation.sum_of_price # reservationのpriceに変数として追加
+binding.pry
  # if @reservation.valid?
  # @a = "true"
  # @days = (@reservation.finished_day.to_date - @reservation.started_day.to_date).to_i
@@ -28,12 +28,11 @@ class ReservationsController < ApplicationController
  def create
   @room = Room.find(params[:reservation][:room_id])
   @reservation = Reservation.new(reservation_params)
+byebug
   if @reservation.save!
-# binding.pry
    flash[:notice] = "予約を確定しました"
    redirect_to room_reservation_path(@reservation.room_id, @reservation.id) # 予約後確認ページへとぶ、idを渡したい順番を前から順に指定する
   else
-binding.pry
    render "new"
   end
  end
@@ -43,6 +42,6 @@ binding.pry
 
   private
   def reservation_params
-   params.require(:reservation).permit(:id, :finished_day, :started_day, :people).merge(member_id: current_member.id, room_id: params[:room_id])
+   params.require(:reservation).permit(:id, :finished_day, :started_day, :people, :price).merge(member_id: current_member.id, room_id: params[:room_id])
   end
  end
