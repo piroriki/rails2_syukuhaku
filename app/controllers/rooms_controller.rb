@@ -3,7 +3,7 @@ class RoomsController < ApplicationController
 # user.idは現在ログイン中のユーザーのみで絞り、room.idはログイン中に使用されている関連idのみで絞り込む
 
  def index
-  @rooms = Room.all
+ # @rooms = Room.all
   @rooms = Room.where(member_id: current_member.id)
  end
 
