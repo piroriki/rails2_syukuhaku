@@ -22,10 +22,15 @@
 <body>
 <%= render partial: "members/shared/partial-header" %>
 
+<!--　検索結果該当数を表示させる　-->
+<% if @addresses.present? %>
+ <h3>検索結果：<%= @addresses.count %>件</h3>
+<% else %>
+ <h3>検索結果：０件</h3>
+<% end %>
 
-<h2>検索結果：<%= @addresses.count%>件</h2> # 住所検索結果を表示
 
-<% @addresses.each do |address| %>
+<% @rooms.each  do |a| %>
   <div class="room-result">
     <div class="room-result-content">
       <%= link_to room_path(address), class: "" do %>
@@ -35,8 +40,8 @@
           <%= image_tag 'default_room01.jpeg', :size => '200x100', class: 'room-img' %>
         <% end %>
         <div class="room-result-about">
-          <p class="room-result-name"><%= address.name %></p>
-          <p class="room-result-eria"><%= address.address %></p>
+          <p class="room-result-name"><%= a.name %></p>
+          <p class="room-result-eria"><%= a.address %></p>
           <p class="room-result-price"><%= "¥ #{address.price}" %></p>
         </div>
       <% end %>

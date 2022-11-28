@@ -31,7 +31,7 @@
   <% @rooms.each do |room| %>
    <tr>
     <td><%= image_tag room.image.url, class: "posts-image", size: "300×200" %></td>
-    <td><%= link_to"#{room.name}", controller:'rooms', action:'show', id:room.id %></td>
+    <td><%= link_to"#{room.name}", room_path(:id) %></td>
     <td><%= room.introduction %></td>
     <td class="price-mark"><%= room.price %></td>
     <td><%= room.created_at.to_s(:datetime_jp) %></td>

@@ -8,6 +8,9 @@
 
 <!-- bootstrapで必要なCSSを以下に記載　-->
 <style>
+.image-aria{
+ 
+}
 </style>
 </head>
 
@@ -25,32 +28,43 @@
  </div>
 </div> <!--　jumbotronクラスの閉じタグ　-->
 
+
 <!--　各エリアの画像を貼り付け、画像リンク&地名を表示させる　-->
  <div class="area-container">
-  
   <p class="area-container-title">おすすめのエリア</p>
-  <div class="image-4area">
    
    <div class="image-area">
-    <p id="image-title">東京</p>
-    <%= link_to image_tag("img_tokyo.jpg", class:"image") %>
+    <%= link_to result_rooms_path(address:"東京"),method: :post, local:true do %>
+     <p id="image-title">東京</p>
+     <image src="/assets/images/img_tokyo.jpg", alt="東京") %>
+    <% end %>
    </div>
+
    <div class="image-area">
-    <p id="image-title">大阪</p>
-    <%= link_to image_tag("img_osaka.jpg", class:"image") %>
+    <%= link_to result_rooms_path(address:"大阪"),method: :post, local:true do %>
+     <p id="image-title">大阪</p>
+     <image src="/assets/images/img_osaka.jpg", alt="大阪") %>
+    <% end %>
    </div>
+
    <div class="image-area">
-    <p id="image-title">京都</p>
-    <%= link_to image_tag("img_kyoto.jpg", class:"image") %>
+    <%= link_to result_rooms_path(address:"京都"),method: :post, local:true do %>
+     <p id="image-title">京都</p>
+     <image src="assets/images/img_kyoto.jpg", alt="京都") %>
+    <% end %>
    </div>
+
    <div class="image-area">
-    <p id="image-title">札幌</p>
-    <%= link_to image_tag("img_sapporo.jpg", class:"image") %>
+    <%= link_to result_rooms_path(address:"札幌"),method: :post, local:true do %>
+     <p id="image-title">札幌</p>
+     <image src="assets/images/img_sapporo.jpg", alt="札幌") %>
+    <% end %>
    </div>
-  </div>
+
  </div>
 
 <%= render "members/shared/partial-footer" %>
+
 
 <!-- jQuery --> <!--　必要なJS系リンクをbody閉じタグ直前におく　-->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

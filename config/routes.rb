@@ -23,7 +23,13 @@ Rails.application.routes.draw do
   resources :rooms do
    resources :reservations
    collection do
+
     get 'post'
+
+    get 'result' => 'rooms#result' # 検索結果のルーティング追加
+    get 'search' => 'rooms#search' 
+
+
    end
   end
 

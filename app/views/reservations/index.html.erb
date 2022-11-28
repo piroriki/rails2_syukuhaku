@@ -16,6 +16,7 @@
 <h3>予約済みルーム一覧</h3>
 
 <table class="table table-striped table-bordered">
+  <% @reservations.each do |rv| %>
   <thead>
     <tr>
       <th>ルーム画像</th>
@@ -29,19 +30,20 @@
   </thead>
 
   <tbody>
-    <% @reservations.each do |rv| %>
       <tr>
         <td>
          <%= image_tag rv.room.image.url, class: "posts-image", size: "300×200" %>
         </td>
-        <td><%= rv.room.name %></td>
+        <td>
+         <%= rv.room.name %>
+        </td>
         <td><%= rv.room.introduction %></td>
         <td><%= rv.price %></td>
         <td><%= rv.started_day.to_s(:reservetime_jp) %></td>
         <td><%= rv.finished_day.to_s(:reservetime_jp) %></td>
         <td><%= rv.updated_at.to_s(:datetime_jp) %></td>
       </tr>
-    <% end %>
+  <% end %>
   </tbody>
 </table>
 

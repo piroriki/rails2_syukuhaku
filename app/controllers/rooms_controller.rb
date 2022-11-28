@@ -3,7 +3,14 @@ class RoomsController < ApplicationController
 # user.idは現在ログイン中のユーザーのみで絞り、room.idはログイン中に使用されている関連idのみで絞り込む
 
  def index
+  @rooms = Room.all
   @rooms = Room.where(member_id: current_member.id)
+ end
+
+ def show
+  @member = current_member
+  @room = Room.find(params[:id])
+  @reservation = Reservation.new
  end
 
  def new
@@ -22,25 +29,19 @@ class RoomsController < ApplicationController
   end
  end
 
- def show
-  @member = current_member
-  @room = Room.find(params[:id])
-  @reservation = Reservation.new
- end
-
  def result
   if params[:address] == ''
-   @addresss = Room.all
+   @rooms = Room.all
   else
-   @adddresss = Room.where('address LIKE ?','%' + params[:address] + '%')
+   @rooms = Room.where('address LIKE ?','%' + params[:address] + '%')
   end
  end
 
  def search
   if params[:search] == ''
-   @searchs = Room.all
+   @searches = Room.all
   else
-   @serches = Room.where('name LIKE ? OR introduction LIKE ? OR adddress LIKE ?','%' + params[:search] + '%', '%' + params[:search] + '%', '%' + params[:search] + '%')
+   @serches = Room.where('name LIKE ? OR introduction LIKE ? OR address LIKE ?','%' + params[:search] + '%', '%' + params[:search] + '%', '%' + params[:search] + '%')
   end
  end
 
@@ -49,7 +50,7 @@ class RoomsController < ApplicationController
 
  private
  def room_params
-  params.require(:room).permit(:member_id, :name, :address, :introduction, :price, :image, :image_cache)
+  params.require(:room).permit(:member_id, :id, :name, :address, :introduction, :price, :image, :image_cache)
  end
 
 end

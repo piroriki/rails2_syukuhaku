@@ -3,21 +3,21 @@ class ReservationsController < ApplicationController
 
  def index
   @reservations = Reservation.where(member_id: current_member.id)
-  @reservations_roomid = Reservation.select(:room_id).where(member_id:@member)
-  @rooms = Room.where(id:@reservations_roomid)
-# binding.pry
+  @reservations = Reservation.all.includes(:room)
+ # @reservations_roomid = Reservation.select(:room_id).where(member_id:@member)
+ # @rooms = Room.where(id:@reservations_roomid)
  end
 
  def show
   @reservation = Reservation.find(params[:id])
+  @room = Room.find(params[:room_id])
+  @reservations = @room.reservations
  end
 
  def new
  # @a = "false"
   @room = Room.find(params[:reservation][:room_id])
   @reservation = Reservation.new(reservation_params)
-  @price = @reservation.sum_of_price # reservationのpriceに変数として追加
-binding.pry
  # if @reservation.valid?
  # @a = "true"
  # @days = (@reservation.finished_day.to_date - @reservation.started_day.to_date).to_i
@@ -26,8 +26,10 @@ binding.pry
  end
 
  def create
+  @member = current_member
   @room = Room.find(params[:reservation][:room_id])
   @reservation = Reservation.new(reservation_params)
+  @reservation.price = @reservation.sum_of_price  # reservationのpriceに変数として追加
 byebug
   if @reservation.save!
    flash[:notice] = "予約を確定しました"
@@ -42,6 +44,6 @@ byebug
 
   private
   def reservation_params
-   params.require(:reservation).permit(:id, :finished_day, :started_day, :people, :price).merge(member_id: current_member.id, room_id: params[:room_id])
+params.require(:reservation).permit(:id, :finished_day, :started_day, :people, :price).merge(member_id: current_member.id, room_id: params[:room_id])
   end
- end
+end
