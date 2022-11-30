@@ -14,35 +14,42 @@
 
 <body>
 
-<table class="table table-striped table-bordered">
- <div class="mt-4 ml-3 mb-4">
-  <p class="font-weight-bold">予約内容確認</p>
- </div>
-  
-  <tr>
-   <th>予約した部屋</th>
-   <td><%= @reservation.room.name %></td>
-  </tr>
 
-  <tr>
-   <th>開始日</th>
-   <td><%= @reservation.started_day.to_s(:reservetime_jp) %></td>
-  </tr>
- 
-  <tr>
-   <th>終了日</th>
-   <td><%= @reservation.finished_day.to_s(:reservetime_jp) %></td>
-  </tr>
- 
-  <tr>
-   <th>価格</th>
-   <td><%= @reservation.price %>円</td>
-<%binding.pry>
-  </tr>
-</table>
+<!-- アカウント画面を表示させる -->
+
+<div class="account-container">
+
+<!--　画面左横のアカウント、プロフィールリンクを設置する-->
+ <div class="profile-link">
+  <%= link_to "アカウント",member_path(@member.id) %>
+  <%= link_to "プロフィール",edit_member_path(@member.id) %>
+ </div>
+
+ <div class="account-content">
+  <table class="table">
+    <p class="account-title">アカウント</p>
+
+     <tr>
+      <th>メールアドレス</th>
+      <td><%= @member.email %></td>
+     </tr>
+
+     <tr>
+      <th>パスワード</th>
+      <td>******</td>
+     </tr>
+     
+     <tr>
+      <%= link_to "編集", edit_member_registration_path, class:'btn btn-primary form-control' %>
+     </tr>
+    
+  </table>
+ </div>
+</div>
 
 
 <%= render "devise/shared/partial-footer" %>
+
 
 <!-- jQuery --> <!--　必要なJS系リンクをbody閉じタグ直前におく　-->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

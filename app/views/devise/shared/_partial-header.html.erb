@@ -19,6 +19,8 @@
  Pote Share
  </a>
 
+ <%= render "devise/shared/partial-search" %>
+
  <div class="header-nav">
   <% if member_signed_in? %> <!-- ユーザーがログインしているかで処理を変える -->
 
@@ -44,7 +46,7 @@
         <a class="nav-link" href="/rooms">登録済みルーム一覧</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="/profile">設定</a>
+        <a class="nav-link" href="/members/id:">設定</a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="/members/sign_out">ログアウト</a>

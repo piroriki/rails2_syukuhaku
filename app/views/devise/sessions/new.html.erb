@@ -12,37 +12,34 @@
 </head>
 
 
-<body>
+<p class="sign_in_title">ログイン</p>
 
-<table class="table table-striped table-bordered">
- <div class="mt-4 ml-3 mb-4">
-  <p class="font-weight-bold">予約内容確認</p>
- </div>
-  
-  <tr>
-   <th>予約した部屋</th>
-   <td><%= @reservation.room.name %></td>
-  </tr>
+<%= form_with model: @member, url: new_member_session_path,local: true do |f| %>
+<div class="sign_in_field">
+    <div id="requiered">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス" %><br />
+    </div>
 
-  <tr>
-   <th>開始日</th>
-   <td><%= @reservation.started_day.to_s(:reservetime_jp) %></td>
-  </tr>
- 
-  <tr>
-   <th>終了日</th>
-   <td><%= @reservation.finished_day.to_s(:reservetime_jp) %></td>
-  </tr>
- 
-  <tr>
-   <th>価格</th>
-   <td><%= @reservation.price %>円</td>
-<%binding.pry>
-  </tr>
-</table>
+    <div id="requiered">
+    <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード" %><br />
+    </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="field">
+      <%= f.check_box :remember_me %>
+      <%= f.label :パスワードを記憶する %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit "ログイン" %>
+  </div>
+<% end %>
+</div>
 
 
 <%= render "devise/shared/partial-footer" %>
+
 
 <!-- jQuery --> <!--　必要なJS系リンクをbody閉じタグ直前におく　-->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

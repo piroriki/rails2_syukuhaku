@@ -29,28 +29,16 @@ class RoomsController < ApplicationController
   end
  end
 
- def result
-  if params[:address] == ''
-   @rooms = Room.all
-  else
-   @rooms = Room.where('address LIKE ?','%' + params[:address] + '%')
-  end
- end
-
- def search
-  if params[:search] == ''
-   @searches = Room.all
-  else
-   @serches = Room.where('name LIKE ? OR introduction LIKE ? OR address LIKE ?','%' + params[:search] + '%', '%' + params[:search] + '%', '%' + params[:search] + '%')
-  end
- end
-
- def destroy
- end
-
+ def search #エリア検索、キーワード検索の双方の機能を設定する
+  @member = current_member.id
+  @q = Room.ransack(params[:q])
+  @results = @q.result(distinct: true)
+ end 
+ 
  private
+
  def room_params
-  params.require(:room).permit(:member_id, :id, :name, :address, :introduction, :price, :image, :image_cache)
+  params.require(:room).permit(:id, :name, :address, :introduction, :price, :image, :image_cache).merge(member_id:current_member.id)
  end
 
 end

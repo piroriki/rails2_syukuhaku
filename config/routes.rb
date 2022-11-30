@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'profiles/show'
-  resource :profile, only: %i[show edit update] 
-
   devise_for :members, :controllers => {
    :registrations => 'members/registrations',
    :sessions => 'members/sessions'
@@ -11,29 +8,29 @@ Rails.application.routes.draw do
   devise_scope :member do
    get '/members/sign_out' => 'members/sessions#destroy'
    post '/members/sign_out' => 'members/sessions#destroy'
-   get '/members/account' => 'members/registrations#account'
-   # patch '/members/account' => 'members/registrations#account'
   end
 
+# account/profileページ関連のみに絞ってルーティング
+  resources :members, only: [:show, :edit, :update]
 
+# トップ画面専用
   resources :tops
 
    post '/rooms/:room_id/reservations/new' => 'reservations#create'
 
-  resources :rooms do
+# rooms=親、reservation=子リソースでネストさせてルーティング
+
+  resources :rooms do 
    resources :reservations
    collection do
 
     get 'post'
 
-    get 'result' => 'rooms#result' # 検索結果のルーティング追加
-    get 'search' => 'rooms#search' 
-
-
+# 検索結果(エリア、キーワード)のルーティング追加
+    get '/rooms/search' => 'rooms#search', as:'search'
+    
    end
   end
-
-  get 'search' => 'searches#search'
 
  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

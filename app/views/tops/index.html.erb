@@ -1,5 +1,5 @@
-<%= render "members/shared/partial-header" %>
-<%= render "members/shared/partial-messages" %>
+<%= render "devise/shared/partial-header" %>
+<%= render "devise/shared/partial-messages" %>
 
 <head> <!--　headタグ内に必要なCSS系リンクをおく　-->
 
@@ -8,9 +8,6 @@
 
 <!-- bootstrapで必要なCSSを以下に記載　-->
 <style>
-.image-aria{
- 
-}
 </style>
 </head>
 
@@ -20,11 +17,18 @@
 
 <!-- 背景画像の中に検索エリアを用意する -->
 
- <div class="search-area">
+ <div class="row col-lg-6">
   <p class="search-area-title">
    <h2>Potepan Shareでまだ体験したことのない旅をしよう</h2>
   </p><br />
-  <%= render "members/shared/partial-search" %>
+
+<!--　エリア検索用フォームを表示する(address_contで住所を使用したあいまい検索ができる)　-->
+ 　<%= search_form_for @q, url: search_rooms_path do |f| %>
+    <%= f.label :address_cont,"エリア" %>
+    <%= f.search_field :address_cont, placeholder: "東京", class:"form-control" %>
+    <%= f.submit "探す", class: "btn btn-primary" %>
+ 　<% end %>
+
  </div>
 </div> <!--　jumbotronクラスの閉じタグ　-->
 
@@ -33,37 +37,30 @@
  <div class="area-container">
   <p class="area-container-title">おすすめのエリア</p>
    
-   <div class="image-area">
-    <%= link_to result_rooms_path(address:"東京"),method: :post, local:true do %>
+   <div class="panel-area col-lg-3 col-6">
+    <%= link_to image_tag( 'https://presite-potepancamp-rails-02.herokuapp.com/assets/img_tokyo.jpg', width: '186px', class: "image", alt: "東京" ), search_rooms_path(q:{address_cont:"東京"}) %>
      <p id="image-title">東京</p>
-     <image src="/assets/images/img_tokyo.jpg", alt="東京") %>
-    <% end %>
    </div>
 
-   <div class="image-area">
-    <%= link_to result_rooms_path(address:"大阪"),method: :post, local:true do %>
+   <div class="panel-area col-lg-3 col-6">
+    <%= link_to image_tag( 'https://presite-potepancamp-rails-02.herokuapp.com/assets/img_osaka.jpg', class: "image", alt: "大阪"), search_rooms_path(q:{address_cont:"大阪"}) %>
      <p id="image-title">大阪</p>
-     <image src="/assets/images/img_osaka.jpg", alt="大阪") %>
-    <% end %>
    </div>
 
-   <div class="image-area">
-    <%= link_to result_rooms_path(address:"京都"),method: :post, local:true do %>
+   <div class="panel-area col-lg-3 col-6">
+    <%= link_to image_tag( 'https://presite-potepancamp-rails-02.herokuapp.com/assets/img_kyoto.jpg', class: "image", alt: "京都"), search_rooms_path(q:{address_cont:"京都"}) %>
      <p id="image-title">京都</p>
-     <image src="assets/images/img_kyoto.jpg", alt="京都") %>
-    <% end %>
    </div>
 
-   <div class="image-area">
-    <%= link_to result_rooms_path(address:"札幌"),method: :post, local:true do %>
+   <div class="panel-area col-lg-3 col-6">
+    <%= link_to link_to image_tag( 'https://presite-potepancamp-rails-02.herokuapp.com/assets/img_sapporo.jpg', class: "image", alt: "札幌" ), search_rooms_path(q:{address_cont:"札幌"}) %>
      <p id="image-title">札幌</p>
-     <image src="assets/images/img_sapporo.jpg", alt="札幌") %>
-    <% end %>
    </div>
 
  </div>
 
-<%= render "members/shared/partial-footer" %>
+
+<%= render "devise/shared/partial-footer" %>
 
 
 <!-- jQuery --> <!--　必要なJS系リンクをbody閉じタグ直前におく　-->
