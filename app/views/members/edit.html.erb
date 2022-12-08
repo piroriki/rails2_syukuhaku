@@ -19,6 +19,7 @@
 
   .member{
    width: 100%;
+   margin-bottom: 100px;
   }
 
   .row{
@@ -147,10 +148,9 @@
 <body>
 
  <div class="profile-field member">  <!-- プロフィール画面container部分を表示させる -->
-  <div class="row>
+  <div class="row">
    
-   <div class="col-lg-2 member-nav member-nav-pc d-lg-block d-none">  <!--　画面左横のアカウント、プロフィールリンクを設置する（PC）-->
-    <ul>
+   <div class="col-lg-2 member-nav member-nav-pc d-lg-block d-none"> 
      <li class="active">
       <%= link_to "アカウント",member_path(@member.id) %>
      </li>
@@ -160,7 +160,7 @@
     </ul>
    </div>
 
-   <div class="col-lg-2 member-nav member-nav-mobile d-lg-none">  <!--　画面左横のアカウント、プロフィールリンクを設置する（PC）-->
+   <div class="col-lg-2 member-nav member-nav-mobile d-lg-none">
     <ul>
      <li class="active">
       <%= link_to "アカウント",member_path(@member.id) %>
@@ -199,7 +199,6 @@
          <th><%= p.label :avatar, "アイコン画像" %></th>
         </label>
         <td class="mb-4 col-md-9"><%= p.file_field :avatar, accept: 'image/*' %></td>
-        </div>
        </div>
       </div>
 
@@ -227,9 +226,8 @@
        </div>
       </div>
 
-     <% end %>
-
     　<!--　入力フォーム部分ここまで　-->
+     <% end %>
     </div>
    </div>
 

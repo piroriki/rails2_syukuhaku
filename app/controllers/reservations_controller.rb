@@ -36,6 +36,6 @@ class ReservationsController < ApplicationController
 
   private
   def reservation_params # ストロングパラメータ設定
-params.require(:reservation).permit(:id, :finished_day, :started_day, :people, :price).merge(member_id: current_member.id, room_id: params[:room_id])
+params.require(:reservation).permit(:finished_day, :started_day, :people, :price).merge(member_id: current_member.id, room_id: params[:room_id])
   end
 end
