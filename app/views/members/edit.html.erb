@@ -1,66 +1,240 @@
-<%= render "devise/shared/partial-header" %>
-<%= render "devise/shared/partial-messages" %>
+<head>
 
-<head> <!--　headタグ内に必要なCSS系リンクをおく　-->
-
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+ <%= render "devise/shared/partial-header" %>
+ <div class="notifications">
+  <% if flash.now[:notice] %>
+   <div class="notice"><%= flash.now[:notice] %></div>
+  <% end %>
+ </div>
 
 <!-- bootstrapで必要なCSSを以下に記載　-->
-<style>
-</style>
+
+ <style>
+ 
+  body{
+   font-family: verdana, arial, helvetica, sans-serif;
+   font-size: 13px;
+   line-height: 18px;
+  }
+
+  .member{
+   width: 100%;
+  }
+
+  .row{
+   display: flex;
+   flex-wrap: wrap;
+   margin-right: -15px;
+   margin-left: -15px;
+  }
+
+  .member .member-nav-pc{
+   height: 100vh;
+  }
+
+  .member .member-nav{
+   width: 100%;
+   box-sizing: border-box;
+   padding: 30px 15px;
+  }
+
+  .member-nav li{
+   font-size: 18px;
+   padding: 10px;
+  }
+
+  .d-none{
+   display: none;
+  }
+  
+  .member .member-nav-mobile{
+   height: auto;
+  }
+
+  .member .member-nav{
+   width: 100%;
+   box-sizing: border-box;
+   padding: 30px 15px;
+  }
+
+  .member-view{
+   background-color: #F6F8F9;
+   border-left : 2px solid #e2e2e2;
+  }
+
+  .col-lg-10{
+   position: relative;
+   width: 100%;
+   padding-right: 15px;
+   padding-left: 15px;
+  }
+
+  .member-view-form{
+   max-width: 880px;
+   background-color: white;
+   border: 1px solid gray;
+   margin: 30px auto;
+  }
+
+  .profile-content{
+   border-bottom: 1px solid #eaedef;
+   padding: 20px;
+   margin: 0 15px;
+   font-size: 16px;
+  }
+
+  .profile-title{
+   color: black;
+   font-size: 20px;
+   margin: 0 10px;
+   padding: 10px;
+  }
+
+  label{
+   font-weight: bold;
+   font-size: 16px;
+  }
+
+  .member .icon-area{
+   text-align: center;
+  }
+
+  image_tag{
+   border-radius: 50%;
+  }
+
+  .required::after{
+   content: "必須";
+   background-color: #ED1A3D;
+   color: white;
+   font-size: 12px;
+   font-family: verdana, arial, helvetica, sans-serif;
+   height: 5px;
+   width: 10px;
+   margin: 0 5px;
+   padding: 5px;
+   border-radius: 3px;
+  }
+
+  .mb-4{
+   margin-bottom: 1.5rem;
+  }
+  
+  .profile-content label{
+   font-weight: bold;
+  }
+
+  .form-control {
+   display: block;
+   width: 100%;
+   height: calc(1.5em + 0.75rem + 2px);
+   padding: 0.375rem 0.75rem;
+   font-size: 1rem;
+   font-weight: 400;
+   line-height: 1.5;
+   color: #495057;
+   background-color: white;
+   background-clip: padding-box;
+   border: 1px solid #ced4da;
+   border-radius: 0.25rem;
+   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
+
+ </style>
 </head>
 
 
 <body>
 
-<!-- プロフィール画面を表示させる -->
+ <div class="profile-field member">  <!-- プロフィール画面container部分を表示させる -->
+  <div class="row>
+   
+   <div class="col-lg-2 member-nav member-nav-pc d-lg-block d-none">  <!--　画面左横のアカウント、プロフィールリンクを設置する（PC）-->
+    <ul>
+     <li class="active">
+      <%= link_to "アカウント",member_path(@member.id) %>
+     </li>
+     <li class="active">
+      <%= link_to "プロフィール",edit_member_path(@member.id) %>
+     </li>
+    </ul>
+   </div>
 
-<div class="profile-container">
+   <div class="col-lg-2 member-nav member-nav-mobile d-lg-none">  <!--　画面左横のアカウント、プロフィールリンクを設置する（PC）-->
+    <ul>
+     <li class="active">
+      <%= link_to "アカウント",member_path(@member.id) %>
+     </li>
+     <li class="active">
+      <%= link_to "プロフィール",edit_member_path(@member.id) %>
+     </li>
+    </ul>
+   </div>
 
-<!--　画面左横のアカウント、プロフィールリンクを設置する-->
- <div class="profile-link">
-  <%= link_to "アカウント",member_path(@member.id) %>
-  <%= link_to "プロフィール",edit_member_path(@member.id) %>
- </div>
 
- <div class="profile-content">
-  <table class="table">
-   <%= form_with model:@member do |p|%>
-    <p class="profile-title">プロフィール</p>
+   <div class="col-lg-10 member-view">　<!--　入力フォーム部分を囲んで表示させる　-->
+    <div class="member-view-form">
 
-    <tr>
-     <td>
-      <% if @member.avatar? %>
-       <%= image_tag @member.avatar.url,　alt:"アイコン画像", size:"100×100",class:"nav-icon" %>
-      <% else %>
-       <%= image_tag '/assets/images/default-icon.jpg', alt:"アイコン画像", size:"100×100",class:"nav-icon" %>
-      <% end %>
-     </td>
-    </tr>
-
-    <tr>
-     <th><%= p.label :avatar, "アイコン画像" %></th>
-     <td><%= p.file_field :avatar, accept: 'image/*' %></td>
-    </tr>
- 
-    <tr>
-     <th><%= p.label :name, "名前" %></th>
-     <td><%= p.text_field :name, :placeholder => "名前を入力", required: true %></td>
-    </tr>
-
-    <tr>
-     <th><%= p.label :introduction, "自己紹介文" %></th>
-     <td><%= p.text_area :introduction, :placeholder => "自己紹介を入力" %></td>
-    </tr>
+     <div class="profile-content">
+      <div class="row">
+       <p class="profile-title">プロフィール</p>
+      </div>
+     </div>
+   
+     <%= form_with model:@member do |p|%>
     
-    <tr>
-     <%= p.submit "更新する", class:'btn btn-primary form-control'%>
-    </tr>
-   <% end %>
-  </table>
+      <div class="profile-content">
+       <div class="row">
+        <div class="col-md-6 offset-md-3">
+         <div class="icon-area">
+          <%= image_tag @member.avatar.thumb.url %>
+         </div>
+        </div>
+       </div>
+      </div>
+      
+      <div class="profile-content">
+       <div class="row">
+        <label class="col-md-3 required">
+         <th><%= p.label :avatar, "アイコン画像" %></th>
+        </label>
+        <td class="mb-4 col-md-9"><%= p.file_field :avatar, accept: 'image/*' %></td>
+        </div>
+       </div>
+      </div>
+
+      <div class="profile-content">
+       <div class="row">
+        <label class="col-md-3 required">
+         <th><%= p.label :name, "名前" %></th>
+        </label>
+        <td class="mb-4 col-md-9 form-control"><%= p.text_field :name, :placeholder => "名前を入力", required: true %></td>
+       </div>
+      </div>
+
+      <div class="profile-content">
+       <div class="row">
+        <label class="col-md-3 required">
+         <th><%= p.label :introduction, "自己紹介文" %></th>
+        </label>
+        <td class"mb-4 col-md-9 form-control"><%= p.text_area :introduction, :placeholder => "自己紹介を入力", required: true %></td>
+       </div>
+      </div>
+
+      <div class="profile-content">
+       <div class="row">
+        <%= p.submit "更新", class:'btn btn-primary form-control col-md-2 mx-3' %>
+       </div>
+      </div>
+
+     <% end %>
+
+    　<!--　入力フォーム部分ここまで　-->
+    </div>
+   </div>
+
+  </div> <!--　プロフィール画面のcontainer部分ここまで　-->
  </div>
-</div>
 
 
 <%= render "devise/shared/partial-footer" %>

@@ -1,7 +1,7 @@
 class AvatarUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+   include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -13,12 +13,16 @@ class AvatarUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  def default_url
-   'room01.jpg'
+  def default_url(*args)
+   'default-icon.jpg'
   end
 
   def extension_whitelist
-   %w[jpg jpeg gif png]
+   %w(jpg jpeg gif png)
+  end
+
+  version :thumb do #リサイズ表記
+   process resize_to_fit: [65, 65]
   end
 
 

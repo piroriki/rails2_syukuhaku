@@ -10,13 +10,11 @@ class MembersController < ApplicationController
 
  def update
   @member = current_member
-  @a = false
   if @member.update(member_params)
-   @a = true
    flash[:notice] = "プロフィールを更新しました"
-   redirect_to edit_member_path
+   redirect_to edit_member_path(@member)
   else
-   flash[:notice] = "プロフィールを更新できませんでした"
+   flash.now[:notice] = "プロフィールを更新できませんでした"
    render "edit"
   end
  end

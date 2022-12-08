@@ -1,128 +1,141 @@
-<%= render "devise/shared/partial-header" %>
+<head>
 
-<div class="notifications">
- <% if flash.now[:notice] %>
-  <div class="notice"><%= flash.now[:notice] %></div>
- <% end %>
-</div>
-
-<head> <!--　headタグ内に必要なCSS系リンクをおく　-->
-
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+ <%= render "devise/shared/partial-header" %>
+ <div class="notifications">
+  <% if flash.now[:notice] %>
+   <div class="notice"><%= flash.now[:notice] %></div>
+  <% end %>
+ </div>
 
 <!-- bootstrapで必要なCSSを以下に記載　-->
-<style>
+ <style>
+  body{
+   font-family: verdana, arial, helvetica, sans-serif;
+   font-size: 13px;
+   line-height: 18px;
+  }
 
-.notifications{
- color: white;
- text-align: center;
-}
+  .top-main{
+   background-image:url(https://presite-potepancamp-rails-02.herokuapp.com/assets/img_cover_top.jpg);
+   background-size: cover;
+   width: 100%;
+   height: 650px;
+   margin-bottom: 100px;
+  }
 
-.top .top-main{
- background-image:url(https://presite-potepancamp-rails-02.herokuapp.com/assets/img_cover_top.jpg);
- background-size: cover;
- width: 100%;
- height: 650px;
-}
+  .container{
+   max-width: 960px;
 
-.container{
- max-width: 960px;
-}
+   width: 100%;
+   padding-right: 15px;
+   padding-left: 15px;
+   margin-right: auto;
+   margin-left: auto;
+  }
+ 
+  .row{
+   display: flex;
+   flex-wrap: wrap;
+   margin-right: -15px;
+   margin-left: -15px;
+  }
 
-.col-lg-6{
- flex: 0 0 50%;
- max-width: 50%;
-}
+  .col-lg-6{
+   position: relative;
+   width: 100%;
+   padding-right: 15px;
+   padding-left: 15px;
+  }
 
-.search-area-title{
- color: black;
- font-size: 25px;
- font-weight: bold;
-}
+  .search-area-title{
+   color: black;
+   font-size: 25px;
+   line-height: 30px;
+   letter-spacing: 1px;
+  }
 
-.top .form-flame{
- height: 650px;
- display: flex;
- align-items: center;
-}
+  .form-flame{
+   height: 650px;
+   display: flex;
+   align-items: center;
+  }
 
-.top .form-area{
- background-color: white;
- padding: 25px;
- border-radius: 5px;
-}
+  .form-area{
+   background-color: white;
+   padding: 25px;
+   border-radius: 5px;
+   width: 500px;
+   height: 280px;
+  }
 
-.area-container{
- margin: 50px;
- height: 900px;
- overflow-y: scroll;
-}
+  .area-container{
+   margin: 50px;
+   height: 700px;
+   overflow-y: scroll;
+  }
 
-.m-5{
- margin: 3rem!important;
-}
+  .m-5{
+   margin: 3rem;
+  }
 
-*,::after,::before{
- box-sizing: border-box;
-}
+  *,::after,::before{
+   box-sizing: border-box;
+  }
 
-.top .area-container-title{
- font-size: 25px;
- margin: 35px 0;
- font-weight: bold;
- color: black;
-}
+  .top .area-container-title{
+   font-size: 25px;
+   margin: 35px 0;
+   font-weight: bold;
+   color: black;
+  }
 
-.area-row{
- display: flex;
- flex-wrap: wrap;
- margin-right: -15px;
- margin-left: -15px;
- justify-content: space-between;
-}
+  .area-row{
+   display: flex;
+   flex-wrap: wrap;
+   margin-right: -15px;
+   margin-left: -15px;
+   justify-content: space-between;
+  }
 
-.panel-area{
- position: relative;
- width: 22%;
- height: 400px;
- overflow: scroll;
+  .panel-area{
+   position: relative;
+   width: 22%;
+   height: 400px;
+   overflow: scroll;
 
- display: flex;
- justify-content: space-between;
-}
+   display: flex;
+   justify-content: space-between;
+  }
 
-.col-lg-3{
- flex: 0 0 25%;
- max-width: 25%;
-}
+  .col-lg-3{
+   flex: 0 0 25%;
+   max-width: 25%;
+  }
 
-.col-6{
- flex: 0 0 50%;
- max-width: 50%;
-}
+  .top span{
+   position: absolute;
+   bottom: 50px;
+   left: 0;
+   right: 0;
+   color: white;
+   font-weight: bold;
+   z-index: 1;
+   margin: auto;
+   text-align: center;
+   font-size:25px 
+  }
 
-.top span{
- position: absolute;
- bottom: 50px;
- left: 0;
- right: 0;
- color: white;
- font-weight: bold;
- Z-index: 1;
- margin: auto;
- text-align: center;
- font-size:25px 
-}
+  .image{
+   width: 100%;
+   height: 400px;
+   object-fit: cover;
+  }
 
-.image{
- width: 100%;
- height: 400px;
- object-fit: cover;
-}
+  .form-control{
+   margin-bottom: 20px;
+  }
 
-
-</style>
+ </style>
 </head>
 
 
@@ -145,7 +158,7 @@
  　     <%= search_form_for @q, url: search_rooms_path do |f| %>
          <%= f.label :address_cont,"エリア" %>
          <%= f.search_field :address_cont, placeholder: "東京", class:"form-control" %>
-         <%= f.submit "探す", class: "btn btn-primary" %>
+         <%= f.submit "探す", class: "form-control btn-primary mb-4" %>
  　     <% end %>
       </div>
      </div>

@@ -13,12 +13,16 @@ class ImageUploader < CarrierWave::Uploader::Base
    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
  end
 
- def default_url
+ def default_url(*args)
    'room01.jpg'
  end
 
  def extension_whitelist
-   %w[jpg jpeg gif png]
+   %w(jpg jpeg gif png)
+ end
+
+ version :thumb do #リサイズ表記
+   process resize_to_fit: [500, 300]
  end
 
 end

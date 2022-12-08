@@ -4,7 +4,7 @@ class Room < ApplicationRecord
  mount_uploader :image,ImageUploader
 
 # memberモデル、reservationモデルとの関連づけ
- belongs_to :member
+ belongs_to :member, optional: true
  has_many :reservations
 
 

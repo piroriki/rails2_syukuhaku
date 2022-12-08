@@ -1,67 +1,197 @@
-<%= render "devise/shared/partial-header" %>
-<%= render "devise/shared/partial-messages" %>
+<head>
 
-<head> <!--　headタグ内に必要なCSS系リンクをおく　-->
-
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+ <%= render "devise/shared/partial-header" %>
+ <div class="notifications">
+  <% if flash.now[:notice] %>
+   <div class="notice"><%= flash.now[:notice] %></div>
+  <% end %>
+ </div>
 
 <!-- bootstrapで必要なCSSを以下に記載　-->
-<style>
-</style>
+ <style>
+  body{
+   font-family: verdana, arial, helvetica, sans-serif;
+   font-size: 13px;
+   line-height: 18px;
+  }
+ 
+  .room-show{
+   padding: 30px 0;
+   margin-bottom: 100px;
+  }
+
+  .container{
+   max-width: 720px;
+  
+   width:100%;
+   margin-right: auto;
+   margin-left: auto;
+  }
+
+  .row{
+   display: flex;
+   flex-wrap: wrap;
+   margin-right: -15px;
+   margin-left: -15px;
+  }
+
+  .col-md-8{
+   flex: 0 0 66.666667%;
+   max-width: 66.666667%;
+  }
+ 
+  .room-show-content{
+   display: flex;
+   align-items: center;
+  }
+
+  .room-show-prof{
+   padding: 20px;
+  }
+
+  .prof-name{
+   font-size: 18px;
+   font-weight: bold;
+   color: black;
+   padding: 15px 0;
+  }
+
+  .prof-address{
+   font-size: 16px;
+   color: black;
+  }
+
+  .show-room-introduction{
+   font-size: 16px;
+   color: black;
+   line-height: 30px;
+   padding: 30px 10px;
+   border-top: 1px solid #eaedef;
+   border-bottom: 1px solid #eaedef;
+   word-break: break-all;
+  }
+
+  .col-md-4{
+   position: relative;
+   width: 100%;
+   padding-right: 15px;
+   padding-left: 15px;
+  }
+
+  .room-show-form{
+   padding: 20px;
+   border: 1px solid gray;
+  }
+
+  .price-label{
+   color: black;
+   margin-top: 10px;
+   margin-bottom: 0.5rem;
+   font-size: 23px;
+  }
+
+  .reserve-content{
+   padding: 15px 0;
+  }
+
+  label{
+   letter-spacing: 1.5px;
+   font-size: 14px;
+  }
+
+  .room-image{
+   width: 100%;
+   object-fit: cover;
+   vertical-align: middle;
+  }
+
+  .room-show-image{
+   width: 100%;
+   object-fit: cover;
+  }
+
+  .room-show-icon{
+   padding: 10px;
+   width: 85px;
+   height: 85px;
+   object-fit: cover;
+  } 
+
+  .member-image{
+   width: 65px;
+   height: 65px;
+   border-radius: 40px; 
+  }
+  
+ </style>
 </head>
 
 
 <body>
+ <div class="container room-show">
+  <div class="row">
 
-<!-- 登録済みルームの情報を画像の直下に表示させる -->
+   <div class="col-md-8"> <!-- rooms#show部分のみ囲む-->
 
-<!--　roomインスタンスの画像URLを使用して表示させる　-->
-<%= image_tag @room.image_url if @room.image? %>
+    <% if @room.image.present? %>
+     <%= image_tag @room.image.url, class: "room-image" %>
+    <% else %>
+     <%= image_tag "/assets/images/room01.jpg", class: "room-image" %>
+    <% end %>
 
-<div class="mt-4 ml-3 mb-4">
- <tr>
-  <p class="font-weight-bold"><%= @room.name %></p>
- </tr>
+     <tr>
+      <div class="room-show-content">
+       <div class="room-show-icon">
+        <%= image_tag current_member.avatar.url, class:"member-image" %>
+       </div>
+       
+       <div class="room-show-prof">      
+        <p class="prof-name"><%= @room.name %></p>
+        <p class="prof-address"><%= @room.address %></p>
+       </div>
+      </div>
+     </tr>
 
- <tr>
-  <p class="border-bottom"><%= @room.address %></p>
- </tr>
-
- <tr>
-  <p class="border-bottom"><%= @room.introduction %><p>
- </tr>
-</div>
+     <tr>
+      <p class="show-room-introduction"><%= @room.introduction %><p>
+     </tr>
+   </div>　<!--　rooms#show部分ここまで　-->
 
 
 <!--　ルーム予約フォームを右端に寄せて表示する-->
 
- <div class="col-md-4 float-right border">
-
-  <%= form_with model:@reservation, method: :get, url:new_room_reservation_path(@room), local:true do |f| %>
+   <div class="col-md-4">  <!-- reservations#newのみ囲む -->
+    
+    <div class-"room-show-form">
+    <%= form_with model:@reservation, method: :get, url:new_room_reservation_path(@room), local:true do |f| %>
 
     <%= f.hidden_field:room_id, value:@room.id %>
     <%= f.hidden_field:member_id, value:current_member.id %>
 
-    <p class="price-label" style="font-weight:bold; margin-top:20px; margin-bottom:20px; font-size:20px;">
+    <p class="price-label">
      ¥<%= @room.price %>/日
     </p><br>
 
-    <%= f.label:started_day,"開始日" %>
-    <%= f.date_field:"started_day", min: Date.current, required:true, class:"form-control mb-3" %>
+    <div class="reserve-content">
+     <%= f.label:started_day,"開始日" %>
+     <%= f.date_field:"started_day", min: Date.current, required:true, class:"form-control mb-3" %>
 
-    <%= f.label:"finished_day","終了日" %>
-    <%= f.date_field:finished_day, min:Date.current.next_day, required:true, class:"form-control mb-3" %>
+     <%= f.label:"finished_day","終了日" %>
+     <%= f.date_field:finished_day, min:Date.current.next_day, required:true, class:"form-control mb-3" %>
 
-    <%= f.label:people,"人数" %>
-    <%= f.number_field:people, min:1, required:true, class:"form-control mb-3" %>
+     <%= f.label:people,"人数" %>
+     <%= f.number_field:people, min:1, required:true, class:"form-control mb-3" %>
 
-   <div class="col-xs-8">
-    <%= f.submit "予約する", class:"btn btn-primary form-control" %>
-   </div>
-  <% end %>
+     <div class="actions">
+      <%= f.submit "予約する", class:"btn btn-primary form-control" %>
+     </div>
+    <% end %>
+    
+    </div>
+   </div> <!-- reservations#newここまで -->
+
+  </div>
  </div>
-
 
 <%= render "devise/shared/partial-footer" %>
 
