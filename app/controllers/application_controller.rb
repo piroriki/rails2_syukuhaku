@@ -1,6 +1,14 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  before_action :set_current_member
+
+#ログイン中のユーザーidを渡せるように設定する
+ def set_current_member
+  @current_member ||= Member.find_by(id: session[:member_id])
+ end
+
+
 # ログイン済ユーザーのみにアクセスを許可する
 # before_action :authenticate_member!
 
@@ -38,6 +46,13 @@ end
   def after_sign_in_path_for(resource)
     tops_path
   end
+
+# def authenticate_member
+ # if @current_member == nil
+  # flash[:notice] = "ログインが必要です"
+  # redirect_to tops_path
+ # end
+# end
 
 def configure_permitted_parameters
  added_attrs = [ :name, :email, :password ]
