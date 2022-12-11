@@ -9,9 +9,9 @@ class ReservationsController < ApplicationController
  end
 
  def show
+　@member = current_member
   @reservation = Reservation.find(params[:id])
   @room = Room.find(params[:room_id])
-  @reservations = @room.reservations
  end
 
  def new
@@ -38,7 +38,7 @@ class ReservationsController < ApplicationController
 
   private
   def reservation_params # ストロングパラメータ設定
-binding.pry
-   params.require(:reservation).permit(:finished_day, :started_day, :people, :price).merge(member_id: @current_member.id, room_id: params[:room_id])
+
+   params.require(:reservation).permit(:finished_day, :started_day, :people, :price).merge(member_id: current_member.id, room_id: params[:room_id])
   end
 end

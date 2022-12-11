@@ -1,16 +1,22 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  before_action :set_current_member
+  before_action :current_member
+  before_action :logged_in?
+  
 
 #ログイン中のユーザーidを渡せるように設定する
- def set_current_member
-  @current_member ||= Member.find_by(id: session[:member_id])
+ def current_member
+  if session[:member_id]
+   @current_member ||= Member.find_by(id: session[:member_id])
+  end
  end
 
+# ユーザーがログインしていればtrue、そのほかならfalseを返す
+ def logged_in?
+  !current_member.nil?
+ end
 
-# ログイン済ユーザーのみにアクセスを許可する
-# before_action :authenticate_member!
 
 # ransackでヘッダー部分の検索フォームを使用できるようにする
  before_action :set_search
@@ -18,6 +24,8 @@ class ApplicationController < ActionController::Base
 # deviseコントローラーにストロングパラメータを追加する
  before_action :configure_permitted_parameters, if: :devise_controller? 
 
+# ログイン済ユーザーのみにアクセスを許可する
+# before_action :authenticate_member!
 
 #ログイン後のリダイレクト先をトップページに、それ以外の条件に合致した場合はプロフィール編集画面をリダイレクト先にする
  def after_sign_in_path_for(resource)
