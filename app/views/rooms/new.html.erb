@@ -1,0 +1,254 @@
+<head>
+ <%= render "devise/shared/partial-header" %>
+ <div class="notifications">
+  <% if flash.now[:notice] %>
+   <div class="notice"><%= flash.now[:notice] %></div>
+  <% end %>
+ </div>
+
+<!-- bootstrapで必要なCSSを以下に記載　-->
+ <style>
+  body{
+   font-family: verdana, arial, helvetica, sans-serif;
+   font-size: 13px;
+   line-height: 18px;
+  }
+ 
+ .room-new{
+  width: 100%;
+  margin-bottom: 100px;
+  padding-top: 100px;
+ }  
+
+ .row{
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+ }
+ 
+ .room-new .room-nav-pc{
+  height: 100vh;
+ }
+
+ .room-new .room-nav{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 30px 15px;
+ }
+
+ .d-none{
+  display: none;
+ }
+
+ .room-new .room-nav-mobile{
+  height: auto;
+ }
+
+ .room-new .room-nav{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 30px 15px;
+ }
+
+ ul{
+  list-style: none;
+  
+  margin-top: 0;
+  margin-bottom: 1rem;
+ }
+
+ .room-new .new-room-form{
+  background-color: #F6F8F9;
+  border-left: 2px solid gray;
+ }
+
+ .new-room .new-room-inner{
+  max-width: 880px;
+  background-color: #white;
+  border: 1px solid #gray;
+  margin: 50px auto;
+ }
+
+  form{
+   display: block;
+   margin-top: 0em;
+  }
+
+  .new-room-title{
+   font-size: 20px;
+   color: black;
+   padding: 20px 10px;
+  }
+
+  .new-room-content{
+   border-bottom: 1px solid #eaedef;
+   padding: 20px;
+   margin: 0 20px;
+   font-size: 16px;
+   font-weight: bold;
+  } 
+
+  .row{
+   display: flex;
+   flex-wrap: wrap;
+   margin-right: -15px;
+   margin-left: -15px;
+  }
+
+  .required::after{
+    content: "必須";
+    background-color: #ED1A3D;
+    color: white;
+    font-size: 12px;
+    font-family: verdana, arial, helvetica, sans-serif;
+    height: 5px;
+    width: 10px;
+    margin: 0 5px;
+    padding: 5px;
+    border-radius: 3px;
+  }
+  
+  .col-mg-3{
+   flex: 0 0 25%;
+   max-width: 25%;
+  }
+
+  .form-control{
+   display: block;
+   width: 100%;
+   height: calc(1.5em + 0.75rem + 2px);
+   padding: 0.375rem 0.75rem;
+   font-size: 1rem;
+   font-weight: 400;
+   line-height: 1.5;
+   color: #495057;
+   background-color: white;
+   background-clip: padding-box;
+   border: 1px solid gray;
+   border-radius: 0.25rem;
+   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  } 
+
+  .mb-4{
+   margin-bottom: 1.5rem;
+  }
+
+  .actions{
+   margin-left: -20px;
+  }
+  
+ </style>
+</head>
+
+
+<div class="container room-new">
+ <div class="row">
+
+  <div class="col-lg-2 room-nav room-nav-pc d-lg-black d-none">
+   <ul>
+    <li class="active">
+     <a href="/rooms/new">基本情報</a>
+    </li>
+   </ul>
+  </div>
+  
+  <div class="col-lg-2 room-nav room-nav-mobile d-lg-none">
+   <ul>
+    <li class="active">
+     <a href="/rooms/new">基本情報</a>
+    </li>
+   </ul>
+  </div>
+   
+  <div class="col-lg-10 new-room-form">
+   <div class="new-room-inner">
+   
+   <%= form_with model:@room do |room| %>
+
+<!-- ルーム登録画面で各種情報を設定させる -->
+
+    <div class="new-room-content">
+     <div class="row">
+      <p class="new-room-title">ルーム情報登録</p>
+     </div>
+    </div>
+
+    <tr>
+     <div class="new-room-content">
+      <div class="row">
+       <th><%= room.label :name,"ルーム名",class:"col-md-3 required" %></th>
+       <td><%= room.text_field :name, :placeholder => "ルーム名を入力", class:"form-control mb-4 col-md-9" %></td>
+      </div>
+     </div>
+    </tr>
+
+    <tr>
+     <div class="new-room-content">
+      <div class="row">
+       <th><%= room.label :introduction,"ルーム紹介",class:"col-md-3 required" %></th>
+       <td><%= room.text_area :introduction, :placeholder => "ルーム説明を入力", class:"form-control mb-4 col-md-9" %></td>
+      </div>
+     </div>
+    </tr>
+
+    <tr>
+     <div class="new-room-content">
+      <div class="row">
+       <th><%= room.label :price,"料金",class:"col-md-3 required" %></th>
+       <td><%= room.number_field :price, :placeholder => "1日あたりの料金を入力", class:"form-control mb-4 col-md-9" %></td>
+      </div>
+     </div>
+    </tr>
+
+    <tr>
+     <div class="new-room-content">
+      <div class="row">
+       <th><%= room.label :address,"住所",class:"col-md-3 required" %></th>
+       <td><%= room.text_area :address, :placeholder => "住所を入力", class:"form-control mb-4 col-md-9" %></td>
+      </div>
+     </div>
+    </tr>
+
+    <tr>
+     <div class="new-room-content">
+      <div class="row">
+       <div class="col-md-3 required">
+        <th><%= room.label :image,"ルーム画像" ,accept: 'image/*', onchange: 'previewFileWithId(preview)' %></th>
+       </div>
+       <td><%= room.file_field :image %></td>
+       <td><%= room.hidden_field :image_cache %></td>
+      <div>
+     </div>
+    </tr>
+
+    <tr>
+     <div class="new-room-content">
+      <div class="row">
+       <%= room.hidden_field :member_id, value:current_member.id %>
+       <div class="actions"><%= room.submit"登録", class:"btn btn-primary my-4" %></div>
+      </div>
+     </div>
+    </tr>
+    
+    <% end %>
+    </table>
+   </div>
+  </div>
+ </div>
+</div>
+
+
+<%= render "devise/shared/partial-footer" %>
+
+
+<!-- jQuery --> <!--　必要なJS系リンクをbody閉じタグ直前におく　-->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<!-- popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+<!-- bootstrap.js --><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>

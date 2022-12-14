@@ -10,6 +10,17 @@ gem 'bcrypt'
 gem 'railties'
 gem 'responders'
 gem 'warden'
+gem 'net-smtp'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
+gem 'bootstrap','~> 4.1.1'
+gem 'bootstrap-sass', '3.3.7'
+gem 'jquery-rails'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'ransack'
+
+gem 'pry-byebug',group: :development
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4'

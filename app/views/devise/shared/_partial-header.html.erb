@@ -1,0 +1,152 @@
+<head> <!--　headタグ内に必要なCSS系リンクをおく　-->
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+
+<!-- bootstrapで必要なCSSを以下に記載　-->
+ <style>
+
+  body{
+   font-family: verdana, arial, helvetica, sans-serif;
+   margin: 0;
+  }
+
+  p{
+   font-family: verdana, arial, helvetica, sans-serif;
+   color: white;
+  }
+
+  .clearfix::after{
+   content: "";
+   display: block;
+   clear: :both;
+  }
+
+  .header{
+   margin-top: 0;
+  }
+
+  .header-search{
+   position:relative
+  }
+
+  .header .i::before{
+   position: absolute;
+   top: 10px;
+   left: 8px;
+   font-size: 18px;
+  }
+
+  .header .nav-item{
+   color: white;
+   font-size: 14px;
+  }
+
+  .host-icon{
+   width: 65px;
+   height: 65px;
+   object-fit: cover;
+   border-radius: 50px; 
+  }
+
+  header-nav-menu{
+   background-color: white;
+   border: 3px solid #F6F8F9;
+   position: absolute;
+   top: 70px;
+   right: 10px;
+   padding: 15px;
+   z-index: 1000;
+  }
+
+  header-nav-menu li{
+   line-height: 30px;
+   font-size: 16px;
+   padding: 3px 5px;
+  }
+
+  .navbar-brand{
+   padding-left: 20px;
+   padding-top: 30px;
+  }
+
+  .search-form{
+   padding-left: 20px;
+  }
+
+  .header-nav{
+   padding-right: 20px;
+  }
+ </style>
+</head>
+
+
+<body>
+ <div class="clearfix"></div>
+
+ <header class="header">
+  <div class="header-inner">
+<!--　ナビゲーションバーをトップ画面上部に固定　-->
+   <nav class="navbar navbar-expand-lg navbar-dark bg-black p-0 m-0 sticky-top">
+
+    <div class="header-left-nav mr-auto">  <!--　ヘッダー部分のメニューを左側に固定する-->
+<!--　サイトタイトル　-->
+     <a class="navbar-brand" href="/tops" >Pote Share</a>
+     
+     <div class="search-form">
+      <div class="header-search d-lg-inline-block d-none">  <!--　エリア検索用フォームを表示する(address_cont=住所使用のあいまい検索)　-->
+       <%= search_form_for @q, url: search_rooms_path do |f| %>
+       <i class="fas fa-map-market-alt"></i>&nbsp;
+       <%= f.search_field :address_cont, placeholder: "エリア", class:"form-control" %>
+ 　    <% end %>
+      </div>      
+      <div class="header-search d-lg-inline-block d-none">  <!--　キーワード検索用フォームを表示する(name_cont or introduction_cont)　-->
+ 　    <%= search_form_for @q, url: search_rooms_path do |f| %>
+       <i class="fas fa-search"></i>&nbsp;
+       <%= f.search_field :name_cont, placeholder: "キーワード", class:"form-control" %>
+ 　    <% end %>
+      </div>
+     </div>
+    </div>  <!-- ナビゲーションバー左側ここまで　-->
+
+
+    <div class="header-right-nav　ml-auto">  <!--　ナビゲーションバーで開閉式メニューのみ右側固定にする-->
+     <div class="header-nav">
+     <% if member_signed_in? %> <!-- ユーザーがログインしているかで処理を変える -->
+    
+<!-- ユーザーがログインしていた場合、ユーザー名とアイコン画像の表示に変更する -->
+      <div class="nav-item d-sm-inline-block d-none""><%= current_member.name  %></div>
+      <div class="nav-item">
+       <img class="mx-3 p-1 host-icon nav-trigger",alt="メニュー", src="https://presite-potepancamp-rails-02.herokuapp.com/assets/default_icon-9263fc59c414b7228d256fc178dcb22183561357950a68f5ad086ba7ee054974.jpg">
+      </div>
+<!--　ナビゲーションメニューの中身を設定する　-->
+      <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ヘッダーナビ <span class="caret"></span></a>
+       <ul class="dropdown-menu">
+        <li><a class="nav-link" href="/rooms/new">ルーム登録</a></li>
+        <li><a class="nav-link" href="/rooms/:room_id/reservations">予約済みルーム一覧</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a class="nav-link" href="/rooms">登録済みルーム一覧</a></li>
+        <li><a class="nav-link" href="/members/id:">設定</a></li>
+        <li><a class="nav-link" href="/members/sign_out">ログアウト</a></li>
+       </ul>
+      </li>
+     
+     <% else %> 
+<!--ユーザーがログインしていない場合、ログインもしくは新規登録ボタンを表示させる -->
+      <div class="nav-item">
+       <a class="btn btn-primary" href="/members/sign_up" role="button">新規登録</a>
+       <a class="btn btn-secondary" href="/members/sign_in" role="button">ログイン</a>
+      </div>
+     <% end %>
+     </div>
+    </div>  <!--　ナビゲーションメニュー右側ここまで　-->
+
+   </nav> <!--　ナビゲーションメニュー全体ここまで　-->
+  </div>
+ </header>
+
+ </div>
+</body>

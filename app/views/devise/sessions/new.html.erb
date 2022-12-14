@@ -1,0 +1,125 @@
+<head>
+
+<%= render "devise/shared/partial-header" %>
+
+<div class="notifications">
+ <% if flash.now[:notice] %>
+  <div class="notice"><%= flash.now[:notice] %></div>
+ <% end %>
+</div>
+
+<!-- bootstrapで必要なCSSを以下に記載　-->
+<style>
+
+.sign-in{
+ padding-top: 40px;
+ font-size: 16px;
+}
+
+.container{
+ max-width: 720px;
+}
+
+.sign-in-flame{
+ max-width: 600px;
+ text-align: center;
+ padding: 24px;
+ margin: 0px auto;
+ background-color: white;
+ border-radius: 4px;
+ border: 2px solid gray;
+}
+
+.my-4{
+ font-size: 16px;
+ margin-bottom: 1.5rem;
+ color: black;
+}
+
+.sign-in-inner{
+ width: 360px;
+ margin: 0px auto;
+}
+
+.field{
+ margin-bottom: 10px;
+}
+
+.form-row{
+ display: flex;
+ flex-wrap: wrap;
+ margin-right: -5px;
+ margin-left: -5px;
+}
+
+.col-2{
+ flex: 0 0 16.666667%;
+ max-width: 16.666667%;
+}
+
+.pt-2{
+ padding-top: 0.5rem
+}
+
+.required::before{
+ content: "必須";
+ background-color: #ED1A3D;
+ color: white;
+ font-size: 12px;
+ font-family: verdana, arial, helvetica, sans-serif;
+ height: 5px;
+ width: 10px;
+ margin: 0 5px;
+ padding: 5px;
+ border-radius: 3px;
+}
+
+.actions{
+ margin-bottom: 10px; 
+}
+
+</style>
+</head>
+
+<div class="sign-in container">
+ <div class="sign-in-flame">
+  <p class="my-4">ログイン</p>
+   <div class="sign-in-inner">
+    
+    <%= form_with model: @member, url: new_member_session_path,local: true do |f| %>
+     
+     <div class="field form-row">
+      <div class="col-2 required pt-2"></div>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス" %>
+     </div>
+
+     <div class="field form-row">
+      <div class="col-2 required pt-2"></div>
+      <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード" %>
+     </div>
+
+     <div class="actions">
+      <%= f.submit "ログイン", class:"btn form-control btn-primary my-4" %>
+     </div>
+
+    <% end %>
+
+    <%= link_to "新しいアカウントを作成", new_member_registration_path %>
+
+   </div>   
+ </div>
+</div>
+
+<%= render "devise/shared/partial-footer" %>
+
+
+<!-- jQuery --> <!--　必要なJS系リンクをbody閉じタグ直前におく　-->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<!-- popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+<!-- bootstrap.js --><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>

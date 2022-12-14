@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  image: MyString
+  name: MyString
+  introduction: MyText
+  price: 1
+  finished_day: 2022-11-16 22:26:50
+
+two:
+  image: MyString
+  name: MyString
+  introduction: MyText
+  price: 1
+  finished_day: 2022-11-16 22:26:50

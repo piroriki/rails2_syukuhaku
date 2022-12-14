@@ -1,0 +1,158 @@
+<head>
+ <%= render "devise/shared/partial-header" %>
+ <div class="notifications">
+  <% if flash.now[:notice] %>
+   <div class="notice"><%= flash.now[:notice] %></div>
+  <% end %>
+ </div>
+
+<!-- bootstrapで必要なCSSを以下に記載　-->
+ <style>
+  body{
+   font-family: verdana, arial, helvetica, sans-serif;
+   font-size: 13px;
+   line-height: 18px;
+  }
+
+ .devise{
+  padding-top: 36px;
+  font-size: 16px;
+ }
+
+ .container{
+  max-width: 540px;
+
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+ }
+
+ .devise-flame{
+  max-width: 600px;
+  text-align: center;
+  padding: 24px;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid gray;
+ }
+
+ .member-edit-title{
+  color: black;
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+ }
+
+ .devise-container{
+  width: 360px;
+  margin: 0 auto;
+ }
+
+ .inner{
+  margin-bottom: 10px;
+ }
+
+ .form-container{
+  margin-bottom: 1rem;
+ }
+
+ label{
+  font-size: 16px;
+  font-weight: bold;
+  display: block;
+  text-align: center;
+  padding: 10px;
+ }
+
+ .form-control {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+ }
+
+ .actions{
+  margin-bottom: 10px;
+ }
+
+ </style>
+</head>
+
+
+<body>
+
+ <div class="container devise">
+  <div class="devise-flame">
+   <p class="member-edit-title">アカウント編集</p>
+  
+   <div class="devise-container">
+    <%= form_with model: @member, url: edit_member_registration_path, local: true do |f| %>
+
+<!--　アカウント編集画面を設定する　-->
+ 
+     <div class="inner">
+      <div class="form-container">
+       <%= f.label :email, "メールアドレス" %>
+       <%= f.email_field :email, class:"form-control", autofocus: true, autocomplete: "email" %>
+      </div>
+     </div>
+
+     <div class="inner">
+      <div class="form-container">
+       <%= f.label :password, "変更後パスワード（変更する場合のみ入力）" %>
+       <%= f.password_field :password, class:"form-control", autocomplete: "new-password" %>
+      </div>
+     </div>
+
+     <div class="inner">
+      <div class="form-container">
+       <%= f.label :password_confirmation, "パスワード確認用（変更する場合のみ入力）" %>
+       <%= f.password_field :password_confirmation, class:"form-control", autocomplete: "new-password" %>
+      </div>
+     </div>
+
+     <div class="inner">
+      <div class="form-container">
+       <%= f.label :current_password, "現在のパスワード" %>
+       <%= f.password_field :current_password, class:"form-control", autocomplete: "current-password" %>
+      </div>
+     </div>
+
+     <div class="actions">
+      <%= f.submit "更新", class:"form-control btn btn-primary my-4" %>
+     </div>
+     <div class="actions">
+      <%= link_to "戻る", member_path(@member.id), class:"form-control btn btn-outline-secondary "  %>
+     </div>
+
+    <% end %>
+   </div>
+  </div>
+ </div>
+
+
+<%= render "devise/shared/partial-footer" %>
+
+
+<!-- jQuery --> <!--　必要なJS系リンクをbody閉じタグ直前におく　-->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<!-- popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+<!-- bootstrap.js --><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>

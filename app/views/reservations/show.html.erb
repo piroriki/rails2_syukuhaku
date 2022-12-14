@@ -1,0 +1,139 @@
+<head>
+
+ <%= render "devise/shared/partial-header" %>
+ <div class="notifications">
+  <% if flash.now[:notice] %>
+   <div class="notice"><%= flash.now[:notice] %></div>
+  <% end %>
+ </div>
+
+<!-- bootstrapで必要なCSSを以下に記載　-->
+
+ <style>
+ 
+  body{
+   font-family: verdana, arial, helvetica, sans-serif;
+   font-size: 13px;
+   line-height: 18px;
+  }
+
+  .member{
+   width: 100%;
+   margin-bottom: 100px;
+  }
+
+  .row{
+   display: flex;
+   flex-wrap: wrap;
+   margin-right: -15px;
+   margin-left: -15px;
+  }
+
+  .member-view{
+   background-color: white;
+   border-left: 2px solid #e2e2e2;
+  }
+
+  .col-md-12{
+   position: relative;
+   width: 100%;
+   padding-right: 15px;
+   padding-left: 15px;
+  }
+
+  .col-md-9, .col-md-3{
+   position: relative;
+   width: 100%;
+   padding-right: 15px;
+   padding-left: 15px;
+  }
+
+  .member-view-form{
+   max-width: 880px;
+   background-color: white;
+   border: 1px solid gray;
+   margin: 30px auto;
+  }
+
+  .update-content{
+   border-bottom: 1px solid gray;
+   padding: 20px;
+   margin: 0 15px;
+   font-size: 16px;
+  }
+
+  label{
+   font-weight: bold;
+  }
+
+  .member-view-title{
+   color: black;
+   font-size: 20px;
+   font-weight: bold;
+  }
+
+ </style>
+</head>
+
+
+<body>
+ <div class="container-field member">
+  <div class="row">
+
+   <div class="col-md-12 member-view">
+    <p class="member-view-title">予約内容確認</p>
+    <div class="member-view-form">
+
+     <div class="update-content">
+      <div class="row">
+       <label class="col-md-3">予約した部屋</label>
+      </div>
+      <div class="col-md-9">
+       <td><%= @reservation.room.name %></td>
+      </div>
+     </div>
+
+     <div class="update-content">
+      <div class="row">
+       <label class="col-md-3">開始日</label>
+      </div>
+      <div class="col-md-9">
+       <td><%= @reservation.started_day.to_s(:reservetime_jp) %></td>
+      </div>
+     </div>
+
+     <div class="update-content">
+      <div class="row">
+       <label class="col-md-3">終了日</label>
+      </div>
+      <div class="col-md-9">
+       <td><%= @reservation.finished_day.to_s(:reservetime_jp) %></td>
+      </div>
+     </div>
+
+     <div class="update-content">
+      <div class="row">
+       <label class="col-md-3">価格</label>
+      </div>
+      <div class="col-md-9">
+       <td><%= @reservation.price %>円</td>
+      </div>
+     </div>
+
+    </div>
+   </div>
+  </div>
+ </div>
+
+<%= render "devise/shared/partial-footer" %>
+
+<!-- jQuery --> <!--　必要なJS系リンクをbody閉じタグ直前におく　-->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<!-- popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+<!-- bootstrap.js --><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>

@@ -1,0 +1,178 @@
+<head>
+
+ <%= render "devise/shared/partial-header" %>
+ <div class="notifications">
+  <% if flash.now[:notice] %>
+   <div class="notice"><%= flash.now[:notice] %></div>
+  <% end %>
+ </div>
+
+<!-- bootstrapで必要なCSSを以下に記載　-->
+
+ <style>
+ 
+  body{
+   font-family: verdana, arial, helvetica, sans-serif;
+   font-size: 13px;
+   line-height: 18px;
+  }
+
+  .account-member{
+   width: 100%;
+   margin-bottom: 100px;
+  }
+
+  .row{
+   display: flex;
+   flex-wrap: wrap;
+   margin-right: -15px;
+   margin-left: -15px;
+   margin-top: 30px;
+  }
+
+  .account-member .account-nav-pc{
+   height: 100vh;
+  }
+
+  .account-member .member-nav{
+   width: 100%;
+   box-sizing: border-box;
+   padding: 30px 15px;
+  }
+
+  .d-none{
+   display: none;
+  }
+
+  .member-nav li{
+   font-size: 18px;
+   padding: 10px;
+  }
+
+  .account-member .member-nav-mobile{
+   height: auto;
+  }
+
+ .account-member .member-nav{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 30px 15px;
+ }
+
+ .member-view{
+  background-color: #F6F8F9;
+  border-left : 2px solid #e2e2e2;
+ }
+
+ .member-view-form{
+  max-width: 880px;
+  background-color: white;
+  border: 1px solid gray;
+  margin: 30px auto;
+ }
+
+ .account-content{
+  border-bottom: 1px solid #eaedef;
+  padding: 20px;
+  margin: 0 15px;
+  font-size: 16px;
+ }
+
+ .account-title{
+  color: black;
+  font-size: 20px;
+  margin: 0 10px;
+  padding: 10px;
+ }
+
+  label{
+   font-weight: bold;
+   font-size: 16px;
+  }
+
+ </style>
+</head>
+
+
+<body>
+
+
+ <div class="account-member container">  <!-- アカウント画面を表示させる -->
+  <div class="row">
+
+<!--　画面左横のアカウント、プロフィールリンクを設置する-->
+   <div class="col-lg-2 member-nav member-nav-pc d-lg-block d-none">
+    <ul>
+     <li class="active">
+      <%= link_to "アカウント",member_path(@member.id) %>
+     </li>
+     <li class="active">
+      <%= link_to "プロフィール",edit_member_path(@member.id) %>
+     </li>
+   </div>
+
+<!--　画面左横のアカウント、プロフィールリンクを設置する-->
+   <div class="col-lg-2 member-nav member-nav-mobile d-lg-none">
+    <ul>
+     <li class="active">
+      <%= link_to "アカウント",member_path(@member.id) %>
+     </li>
+     <li class="active">
+      <%= link_to "プロフィール",edit_member_path(@member.id) %>
+     </li>
+   </div>
+
+
+   <div class="col-md-10 member-view">
+    <div class="member-view-form">
+
+     <div class="account-content">
+      <div class="row">
+       <p class="account-title">アカウント</p>
+      </div>
+     </div>
+
+     <div class="account-content">
+      <div class="row">
+       <tr>
+        <label class="col-md-3">メールアドレス</label>
+       </tr>
+       <tr>
+        <td><%= @member.email %></td>
+       <tr>
+      </div>
+     </div>
+
+     <div class="account-content">
+      <div class="row">
+        <label class="col-md-3">パスワード</label>
+        <td>******</td>
+      </div>
+     </div>
+
+     <div class="account-content">
+      <div class="row">
+       <tr>
+        <%= link_to "編集", edit_member_registration_path, class:'btn btn-primary form-control mx-3 col-md-2' %>
+       </tr>
+      </div>
+     </div>
+     
+    </div>
+   </div>
+  </div>
+ </div>
+
+<%= render "devise/shared/partial-footer" %>
+
+
+<!-- jQuery --> <!--　必要なJS系リンクをbody閉じタグ直前におく　-->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<!-- popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+<!-- bootstrap.js --><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>

@@ -1,0 +1,250 @@
+<head>
+
+ <%= render "devise/shared/partial-header" %>
+ <div class="notifications">
+  <% if flash.now[:notice] %>
+   <div class="notice"><%= flash.now[:notice] %></div>
+  <% end %>
+ </div>
+
+<!-- bootstrapで必要なCSSを以下に記載　-->
+
+ <style>
+ 
+  body{
+   font-family: verdana, arial, helvetica, sans-serif;
+   font-size: 13px;
+   line-height: 18px;
+  }
+
+  .member{
+   width: 100%;
+   margin-bottom: 100px;
+  }
+
+  .row{
+   display: flex;
+   flex-wrap: wrap;
+   margin-right: -15px;
+   margin-left: -15px;
+  }
+
+  .member .member-nav-pc{
+   height: 100vh;
+  }
+
+  .member .member-nav{
+   width: 100%;
+   box-sizing: border-box;
+   padding: 30px 15px;
+  }
+
+  .member-nav li{
+   font-size: 18px;
+   padding: 10px;
+  }
+
+  .d-none{
+   display: none;
+  }
+  
+  .member .member-nav-mobile{
+   height: auto;
+  }
+
+  .member .member-nav{
+   width: 100%;
+   box-sizing: border-box;
+   padding: 30px 15px;
+  }
+
+  .member-view{
+   background-color: #F6F8F9;
+   border-left : 2px solid #e2e2e2;
+  }
+
+  .col-lg-10{
+   position: relative;
+   width: 100%;
+   padding-right: 15px;
+   padding-left: 15px;
+  }
+
+  .member-view-form{
+   max-width: 880px;
+   background-color: white;
+   border: 1px solid gray;
+   margin: 30px auto;
+  }
+
+  .profile-content{
+   border-bottom: 1px solid #eaedef;
+   padding: 20px;
+   margin: 0 15px;
+   font-size: 16px;
+  }
+
+  .profile-title{
+   color: black;
+   font-size: 20px;
+   margin: 0 10px;
+   padding: 10px;
+  }
+
+  label{
+   font-weight: bold;
+   font-size: 16px;
+  }
+
+  .member .icon-area{
+   text-align: center;
+  }
+
+  image_tag{
+   border-radius: 50%;
+  }
+
+  .required::after{
+   content: "必須";
+   background-color: #ED1A3D;
+   color: white;
+   font-size: 12px;
+   font-family: verdana, arial, helvetica, sans-serif;
+   height: 5px;
+   width: 10px;
+   margin: 0 5px;
+   padding: 5px;
+   border-radius: 3px;
+  }
+
+  .mb-4{
+   margin-bottom: 1.5rem;
+  }
+  
+  .profile-content label{
+   font-weight: bold;
+  }
+
+  .form-control {
+   display: block;
+   width: 100%;
+   height: calc(1.5em + 0.75rem + 2px);
+   padding: 0.375rem 0.75rem;
+   font-size: 1rem;
+   font-weight: 400;
+   line-height: 1.5;
+   color: #495057;
+   background-color: white;
+   background-clip: padding-box;
+   border: 1px solid #ced4da;
+   border-radius: 0.25rem;
+   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
+
+ </style>
+</head>
+
+
+<body>
+
+ <div class="profile-field member">  <!-- プロフィール画面container部分を表示させる -->
+  <div class="row">
+   
+   <div class="col-lg-2 member-nav member-nav-pc d-lg-block d-none"> 
+     <li class="active">
+      <%= link_to "アカウント",member_path(@member.id) %>
+     </li>
+     <li class="active">
+      <%= link_to "プロフィール",edit_member_path(@member.id) %>
+     </li>
+    </ul>
+   </div>
+
+   <div class="col-lg-2 member-nav member-nav-mobile d-lg-none">
+    <ul>
+     <li class="active">
+      <%= link_to "アカウント",member_path(@member.id) %>
+     </li>
+     <li class="active">
+      <%= link_to "プロフィール",edit_member_path(@member.id) %>
+     </li>
+    </ul>
+   </div>
+
+
+   <div class="col-lg-10 member-view">　<!--　入力フォーム部分を囲んで表示させる　-->
+    <div class="member-view-form">
+
+     <div class="profile-content">
+      <div class="row">
+       <p class="profile-title">プロフィール</p>
+      </div>
+     </div>
+   
+     <%= form_with model:@member do |p|%>
+    
+      <div class="profile-content">
+       <div class="row">
+        <div class="col-md-6 offset-md-3">
+         <div class="icon-area">
+          <%= image_tag @member.avatar.thumb.url %>
+         </div>
+        </div>
+       </div>
+      </div>
+      
+      <div class="profile-content">
+       <div class="row">
+        <label class="col-md-3 required">
+         <th><%= p.label :avatar, "アイコン画像" %></th>
+        </label>
+        <td class="mb-4 col-md-9"><%= p.file_field :avatar, accept: 'image/*' %></td>
+       </div>
+      </div>
+
+      <div class="profile-content">
+       <div class="row">
+        <label class="col-md-3 required">
+         <th><%= p.label :name, "名前" %></th>
+        </label>
+        <td class="mb-4 col-md-9 form-control"><%= p.text_field :name, :placeholder => "名前を入力", required: true %></td>
+       </div>
+      </div>
+
+      <div class="profile-content">
+       <div class="row">
+        <label class="col-md-3 required">
+         <th><%= p.label :introduction, "自己紹介文" %></th>
+        </label>
+        <td class"mb-4 col-md-9 form-control"><%= p.text_area :introduction, :placeholder => "自己紹介を入力", required: true %></td>
+       </div>
+      </div>
+
+      <div class="profile-content">
+       <div class="row">
+        <%= p.submit "更新", class:'btn btn-primary form-control col-md-2 mx-3' %>
+       </div>
+      </div>
+
+    　<!--　入力フォーム部分ここまで　-->
+     <% end %>
+    </div>
+   </div>
+
+  </div> <!--　プロフィール画面のcontainer部分ここまで　-->
+ </div>
+
+
+<%= render "devise/shared/partial-footer" %>
+
+
+<!-- jQuery --> <!--　必要なJS系リンクをbody閉じタグ直前におく　-->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<!-- popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+<!-- bootstrap.js --><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>

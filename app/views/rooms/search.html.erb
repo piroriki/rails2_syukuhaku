@@ -1,0 +1,140 @@
+<head>
+
+ <%= render "devise/shared/partial-header" %>
+ <div class="notifications">
+  <% if flash.now[:notice] %>
+   <div class="notice"><%= flash.now[:notice] %></div>
+  <% end %>
+ </div>
+
+<!-- bootstrapで必要なCSSを以下に記載　-->
+ <style>
+
+  body{
+   font-family: verdana, arial, helvetica, sans-serif;
+   font-size: 13px;
+   line-height: 18px;
+  }
+  
+  .search-rooms{
+   width: 100%;
+   padding: 30px 60px;
+   margin-bottom: 100px;
+  }
+
+  .search-title{
+   padding-bottom: 1.5rem;
+   
+   margin-bottom: 0.5rem;
+   font-size: 25px;
+   color: black;
+   line-height: 1.2;
+  }
+
+  .row{
+   display: flex;
+   flex-wrap: wrap;
+   margin-right: -15px;
+   margin-left: -15px;
+  }
+
+  .col-sm-6{
+   position: relative;
+   width: 100%;
+   padding-right: 15px;
+   padding-left: 15px;
+  }
+
+  .search-room-inner{
+   border: 1px solid gray;
+   margin-bottom: 10px;
+  }
+
+  .room-image{
+   position: relative;
+   width: 100%;
+   background: #F6F8F9;
+   height: 200px;
+  }
+
+  .search-room-detail{
+   width: 100%;
+   padding: 15px;
+  }
+
+  .detail-name{
+   word-break: break-all;
+   font-size: 18px;
+   font-weight: bold;
+   color: gray;
+  }
+
+  .detail-address{
+   word-break: break-all;
+   font-size: 16px;
+   font-weight: bold;
+   color: black;
+  }
+
+  .detail-price{
+   text-align: right;
+   font-size: 16px;
+   color: black;
+   letter-spacing: 1px;
+  }
+ </style>
+</head>
+
+
+<body>
+ <div class="container search-rooms ">
+  <p class="pb-4 search-title">検索結果：<%= @results.count %>件</p>
+  <div class="row">
+   <% @results.each do |r| %>
+    <div class="col-sm-6 col-lg-4 col-xl-3">
+     <div class="search-room-inner">
+      <%= link_to r do%> 
+     
+<!--　画像があれば使用し、なければ代替画像を使用する　-->
+       <tr>
+        <% if r.image.url.present? %>
+         <%= image_tag r.image.url, class:'room-image' %>
+        <% else %>
+         <%= image_tag 'assets/images/room01.jpeg', alt:"画像がありません", class: 'room-image' %>
+        <% end %>
+       </tr>
+    
+       <div class="search-room-detail">
+        <tr>
+         <p class="detail-name"><%= r.name %></p>
+        </tr>
+        <tr>
+         <p class="detail-address"><%= r.address %></p>
+        </tr>
+        <tr>
+         <p class="detail-price">¥<%= r.price %>/日</p>
+        </tr>
+       </div>
+    
+      <% end %>   
+     </div>
+    </div>
+   
+   <% end %>
+  </div> 
+ </div>
+
+<%= render "devise/shared/partial-footer" %>
+
+
+<!-- jQuery --> <!--　必要なJS系リンクをbody閉じタグ直前におく　-->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<!-- popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+<!-- bootstrap.js --><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+</body>

@@ -1,0 +1,452 @@
+/*文字列フォント指定*/
+body{
+ font-family: verdana, arial, helvetica, sans-serif;
+}
+
+p{
+ font-family: verdana, arial, helvetica, sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
+
+/*テーブル書式*/
+table{
+ border-spacing: 30px;
+ border-collapse: collapse;
+ line-height: 100px;
+}
+
+/*テーブル内要素の罫線指定*/
+th{
+ border-top: 2px solid #BFC5CA;
+ font-family: verdana, arial, helvetica, sans-serif;
+ color: black;
+}
+
+td{
+ border-top: 2px solid #BFC5CA;
+ font-family: verdana, arial, helvetica, sans-serif;
+}
+
+/*テーブル要素設定*/
+tbody{
+ font-size: 15px;
+ font-weight: bold;
+ color: gray;
+ font-family: verdana, arial, helvetica, sans-serif;
+ padding: 10px;
+}
+
+thead{
+ font-size: 15px;
+ font-weight: bold;
+ color: gray;
+ font-family: verdana, arial, helvetica, sans-serif;
+ padding: 10px;
+ letter-spacing: 2px;
+}
+
+/*登録済みルーム一覧テーブル設定*/
+table.posts-index-form{
+ margin-left: 60px;
+ margin-bottom: 50px;
+ border-bottom: 2px solid #BFC5CA;
+}
+
+table.posts-index-form td{
+ padding: 10px 20px;
+}
+
+table.posts-index-form thead{
+ padding: 0 20px;
+ line-height: 50px;
+}
+
+/*登録済みルーム一覧タイトル設定*/
+.posts-index-title{
+ font-size: 16px;
+ margin: 30px;
+}
+
+/*登録済みルーム画像設定*/
+.posts-image{
+ width:250px;
+ height: 150px;
+ object-fit: cover;
+ vertical-align: middle;
+}
+
+/*id毎ルーム画像設定*/
+.show-images{
+ 
+}
+
+/*ヘッダーテンプレート指定*/
+.partial-header{
+ background-color: black;
+ width: 100%;
+ height: 100px;
+ margin-top: 0px;
+ margin-bottom: 30px;
+ padding: 5px;
+ display: flex;
+ font-family: verdana, arial, helvetica, sans-serif;
+}
+
+/*ヘッダータイトル指定*/
+.header-logo{
+ color: white;
+ font-size: 16px;
+ font-family: 'Sacramento',cursive;
+}
+
+/*ヘッダーボタン指定*/
+.header-nav{
+ float: right;
+}
+
+/*ユーザー名表示設定*/
+.current-member-name{
+ color: white;
+ font-size: 15px;
+ font-family: verdana, arial, helvetica, sans-serif;
+}
+
+/*ヘッダーアイコン設定*/
+.default-icon{
+ width: 50px;
+ height: 50px;
+ border-radius: 40px;
+}
+
+/*ヘッダーメニュー設定*/
+.header-nav-menu{
+ background-color: white;
+ border: 2px solid white;
+ position: absolute;
+ width: 200px;
+ height: 200px;
+ top: 30px;
+ bottom: 30px;
+ right: 10px;
+ left: 10px;
+ padding: 15px;
+ font-family: verdana, arial, helvetica, sans-serif;
+}
+
+/*ヘッダーナビ文字設定*/
+.nav-menu{
+ font-size: 16px;
+ font-family: verdana, arial, helvetica, sans-serif;
+ line-height: 30px;
+}
+
+/*フッターテンプレート指定*/
+.partial-footer{
+ background-color: black;
+ width: 100%;
+ height: 150px;
+ margin-top: 0px;
+ padding: 15px;
+ color: white;
+ font-family: verdana, arial, helvetica, sans-serif;
+ text-align: center;
+ vertical-align: middle;
+}
+
+/*新規登録タイトル指定*/
+.sign_up_title{
+ font-weight: bold;
+ font-family: verdana, arial, helvetica, sans-serif;
+}
+
+/*ログインタイトル指定*/
+.sign_in_title{
+ font-weight: bold;
+ font-family: verdana, arial, helvetica, sans-serif;
+}
+
+/*アクション成功時メッセージ指定*/
+.success_messages{
+ font-weight: bold;
+ font-family: verdana, arial, helvetica, sans-serif;
+ background-color: #D3E173;
+ padding: 1em 1em;
+ margin: 1em 20em;
+ border: dashed 2px #5b8bd0;
+}
+
+/*エラーメッセージ指定*/
+.alert_messages{
+ font-weight: bold;
+ font-family: verdana, arial, helvetica, sans-serif;
+ background-color: #F37053;
+ padding: 1em 1em;
+ margin: 1em 20em;
+ border: dashed 2px #F15B5B;
+}
+
+/*新規登録フォーム設定*/
+.new-member-field{
+ margin: auto;
+ width: 700px;
+ height: 300px;
+ padding-bottom: 15px;
+ position: relative;
+ border: solid 2px #BFC5CA;
+ text-align: center;
+}
+
+/*必須マーク設定*/
+#required::before {
+ content: "必須";
+ background-color: #ED1A3D;
+ color: white;
+ font-size: 12px;
+ font-weight: bold;
+ font-family: verdana, arial, helvetica, sans-serif;
+ min-width: 10px;
+ padding: 3px 7px;
+ margin: 0px 5px;
+ line-height: 1px;
+ vertical-align: middle;
+ white-space: nowrap;
+ text-align: center;
+ border-radius: 3px;
+ display: inline-block;
+}
+
+/*￥マーク設定*/
+td.price-mark::before{
+ content: "¥"
+}
+
+/*入力フォーム設定その1*/
+input[type="text"]{
+ width: 300px;
+ height: 30px;
+ border-radius: 4px;
+ border-color: #BFC5CA;
+ background-color: #ABE1FA;
+}
+
+/*入力フォーム設定その２*/
+input[type="email"]{
+ width: 300px;
+ height: 30px;
+ border-radius: 4px;
+ border-color: #BFC5CA;
+ background-color: #ABE1FA;
+}
+
+/*入力フォーム設定その３*/
+input[type="password"]{
+ width: 300px;
+ height: 30px;
+ border-radius: 4px;
+ border-color: #BFC5CA;
+ background-color: #ABE1FA;
+}
+
+/*送信ボタン設定*/
+submit{
+ background-color: #00AEEF;
+}
+
+/*トップ画像部分ボディ設定*/
+.top-main{
+ background-image:url(/assets/background_top.jpg);
+ height: 700px;
+ width: 100%;
+ background-size: cover;
+ display: flex;
+}
+
+/*トップ検索部分設定*/
+.search-area{
+ align-items: center;
+ border: 2px solid white;
+ background-color: white;
+ border-radius: 5px;
+ width: 500px;
+ padding: 10px 20px;
+ margin-left: 150px;
+ margin-top: 200px;
+ margin-bottom: 200px;
+}
+
+/*おすすめエリアボディ設定*/
+.area-container{
+ background-color: white;
+ width: 100%;
+ position: relative;
+ padding-left: 20px;
+ padding-right: 20px;
+ margin-right: auto;
+ margin-left: auto;
+}
+
+/*トップおすすめエリアコンテンツ設定*/
+.image-4area{
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ box-sizing: border-box;
+ margin-right: -20px;
+ margin-left: -20px;
+}
+
+/*おすすめエリアコンテンツタイトル設定*/
+.area-container-title{
+ margin: 30px 0;
+ font-weight: bold;
+ font-size: 25px;
+ font-family: verdana, arial, helvetica, sans-serif;
+}
+
+/*おすすめエリア画像設定*/
+.image-area{
+}
+
+*,::after,::before{
+ box-sizing: border-box;
+}
+
+/*おすすめコンテンツ画像文字列設定*/
+#image-title{
+ font-size: 15px;
+ font-weight: bold;
+ color: white;
+ font-family: verdana, arial, helvetica, sans-serif;
+ position: absolute;
+ bottom: 25px;
+ transform: translate(-50%,-50%);
+}
+
+/*おすすめエリア画像サイズ設定*/
+.image{
+ max-width: 80%;
+ height: 300px;
+ Border-radius: 6px;
+ object-fit: cover;
+ margin-bottom: 30px;
+}
+
+/*トップ検索エリアタイトル設定*/
+.search-area-title{
+ font-size: 30px;
+ font-family: verdana, arial, helvetica, sans-serif;
+}
+
+/**/
+.sign-in-message{
+ color: white;
+ font-family: verdana, arial, helvetica, sans-serif;
+}
+
+/*ルーム新規登録タイトル設定*/
+.new-room-title{
+ font-size: 16px;
+ font-weight: bold;
+}
+
+/*新規登録ルーム設定*/
+.new-room{
+ display: flex;
+}
+
+/*新規登録ルームフォーム設定*/
+.new-room-form{
+ align-items: center;
+ padding: 10px 20px;
+ border: 2px solid #BFC5CA;
+ background-color :white;
+ width: 800px;
+ height: 650px;
+ margin: 50px 100px;
+ text-align: left;
+}
+
+/*ルーム新規登録th設定*/
+table.new-room th::after{
+  content: "必須";
+ background-color: #ED1A3D;
+ font-family: verdana, arial, helvetica, sans-serif;
+ color: white;
+ font-size: 12px;
+ font-weight: bold;
+ min-width: 10px;
+ padding: 3px 7px;
+ margin: 0px 5px;
+ line-height: 1;
+ vertical-align: middle;
+ white-space: nowrap;
+ text-align: center;
+ border-radius: 3px;
+ display: inline-block;
+}
+
+/*登録後ルーム表示設定*/
+.show-rooms{
+}
+
+/*ユーザー編集タイトル設定*/
+.user-edit-title{
+ font-size: 30px;
+ font-weight: bold;
+}
+
+/*ユーザー編集フォーム設定*/
+.user-edit-form{
+ align-items: center;
+ padding: 10px 20px;
+ border: 2px solid #BFC5CA;
+ background-color :white;
+ width: 600px;
+ height: 500px;
+ text-align: center;
+ margin: 50px auto;
+}
+
+/*ユーザーアカウント確認タイトル設定*/
+.user-show-title{
+ font-size: 20px;
+ font-weight: bold;
+ border-bottom: 2px solid #BFC5CA;
+ padding: 20px 5px;
+ margin: 0;
+ font-size: 20px;
+}
+
+/*ユーザーアカウント確認フォーム設定*/
+.user-show-form{
+ align-items: center;
+ padding: 10px 20px;
+ border: 2px solid #BFC5CA;
+ background-color :white;
+ width: 600px;
+ height: 400px;
+ text-align: left;
+ margin: 50px auto;
+}
+
+/*ユーザーアカウント確認項目設定*/
+.show-form{
+ border-bottom: 2px solid #BFC5CA;
+ padding: 20px;
+}
+
+/*ユーザーアカウント確認部分ラベル設定*/
+#show-form-label{
+ margin-right: 5px;
+}
+
+/*ユーザーアカウント編集ボタン設定*/
+.actions{
+ margin-top: 20px;
+}
+
+/*検索結果ページタイトル設定*/
+.search-result-title{
+ Font-size: 16px;
+}
